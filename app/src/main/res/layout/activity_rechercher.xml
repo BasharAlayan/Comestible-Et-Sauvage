@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.example.bashar.comestibleetsauvage.Activity_rechercher">
+
+    <Button
+        android:id="@+id/Choisir_Lieu"
+        android:layout_width="fill_parent"
+        android:layout_height="88dp"
+        android:textSize="20sp"
+        android:padding="15dp"
+        android:text="Choisir Lieu"
+        android:textStyle="bold|italic"
+        android:drawableLeft="@mipmap/addlocation"
+        android:background="#D8F1FF"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
+
+    <Button
+        android:id="@+id/Ma_Position"
+        android:layout_width="fill_parent"
+        android:layout_height="88dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:textSize="20sp"
+        android:padding="15dp"
+        android:text="Ma Position"
+        android:textStyle="bold|italic"
+        android:drawableLeft="@mipmap/mylocation"
+        android:background="#D8F1FF"
+        android:layout_below="@+id/Choisir_Lieu"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+</RelativeLayout>

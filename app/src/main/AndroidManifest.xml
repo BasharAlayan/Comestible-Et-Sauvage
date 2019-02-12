@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".Activity_Ajouter" />
         <activity android:name=".Activity_ajouter_plante" />
-        <activity android:name=".Activity_rechercher"></activity>
+        <activity android:name=".Activity_rechercher" />
+        <activity android:name=".activity_ajouter_fontaine"></activity>
     </application>
 
 </manifest>

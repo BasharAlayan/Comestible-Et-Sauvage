@@ -14,28 +14,28 @@ public class Synchronisation extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__ajouter);
-        Syn_Plante=(Button) findViewById(R.id.Aj_Plante);
+        Syn_Plante=(Button) findViewById(R.id.Syn_Plante);
         Syn_Plante.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                open_activity_ajouter_P();
+                open_activity_Syn_P();
             }
         });
-        Syn_Fonatine=(Button) findViewById(R.id.Aj_Fontaine);
+        Syn_Fonatine=(Button) findViewById(R.id.Syn_Fontaine);
         Syn_Fonatine.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                open_activity_ajouter_F();
+                open_activity_Syn_F();
             }
         });
     }
 
-    public void open_activity_ajouter_P(){
-        Intent intent = new Intent(this,Activity_ajouter_plante.class);
+    public void open_activity_Syn_P(){
+        Intent intent = new Intent(this,Synch_plante.class);
         startActivity(intent);
     }
-    public void open_activity_ajouter_F(){
-        Intent intent = new Intent(this,activity_ajouter_fontaine.class);
+    public void open_activity_Syn_F(){
+        Intent intent = new Intent(this,Synch_fontaine.class);
         startActivity(intent);
     }
 }

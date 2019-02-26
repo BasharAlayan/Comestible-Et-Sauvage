@@ -9,6 +9,8 @@ import android.content.Intent;
 public class MainActivity extends AppCompatActivity {
     private Button ajouter;
     private Button rechercher;
+    private Button syn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,16 @@ public class MainActivity extends AppCompatActivity {
                 open_activity_Rechercher();
             }
         });
-    }
+
+
+    syn=(Button) syn(R.id.Synchro);
+        rechercher.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            open_activity_Rechercher();
+        }
+    });
+}
 
     public void open_activity_ajouter(){
         Intent intent = new Intent(this,Activity_Ajouter.class);
@@ -36,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void open_activity_Rechercher(){
         Intent intent = new Intent(this,Activity_rechercher.class);
+        startActivity(intent);
+    }
+    public void open_activity_Syn(){
+        Intent intent = new Intent(this,Synchronisation.class);
         startActivity(intent);
     }
 }

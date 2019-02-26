@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Syn_Plante"></activity>
+        <activity android:name=".Synch_fontaine"></activity>
+        <activity android:name=".Synch_plante" />
+        <activity android:name=".Syn_Plante" />
         <activity android:name=".Synchronisation" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

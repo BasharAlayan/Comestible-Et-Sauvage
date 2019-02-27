@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-    syn=(Button) findViewById(R.id.Synchro);
-        rechercher.setOnClickListener(new View.OnClickListener(){
+        syn=(Button) findViewById(R.id.Synchro);
+        syn.setOnClickListener(new View.OnClickListener(){
         @Override
         public void onClick(View v){
-            open_activity_Rechercher();
+            open_activity_Syn();
         }
     });
 }

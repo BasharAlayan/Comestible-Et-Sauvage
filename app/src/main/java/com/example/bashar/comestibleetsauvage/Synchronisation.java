@@ -7,22 +7,25 @@ import android.view.View;
 import android.widget.Button;
 
 public class Synchronisation extends AppCompatActivity {
-    private Button Syn_Plante;
-    private Button Syn_Fonatine;
+
+    private Button Plante;
+    private Button Fonatine;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__ajouter);
-        Syn_Plante=(Button) findViewById(R.id.Syn_Plante);
-        Syn_Plante.setOnClickListener(new View.OnClickListener(){
+        setContentView(R.layout.activity_synchronisation);
+        Plante=(Button) findViewById(R.id.Syn_Plante);
+        Plante.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 open_activity_Syn_P();
             }
         });
-        Syn_Fonatine=(Button) findViewById(R.id.Syn_Fontaine);
-        Syn_Fonatine.setOnClickListener(new View.OnClickListener(){
+
+        Fonatine=(Button) findViewById(R.id.Syn_Fontaine);
+        Fonatine.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 open_activity_Syn_F();

@@ -89,7 +89,7 @@
         android:textCursorDrawable="@drawable/color_cursor"
         android:background="@color/blueClaire"
         android:layout_marginTop="30dp"
-        android:id="@+id/Status"
+        android:id="@+id/Statut_Plante"
         android:layout_marginRight="20dp"
         android:layout_below="@+id/Libelle_Plante"
         android:layout_toRightOf="@+id/textView3"
@@ -102,8 +102,8 @@
         android:id="@+id/textView3"
         android:text="Statut Plante"
         android:textSize="14dp"
-        android:layout_alignBaseline="@+id/Status"
-        android:layout_alignBottom="@+id/Status"
+        android:layout_alignBaseline="@+id/Statut_Plante"
+        android:layout_alignBottom="@+id/Statut_Plante"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="15dp"
@@ -117,7 +117,7 @@
         android:background="@color/blueClaire"
         android:layout_marginTop="30dp"
         android:id="@+id/Image"
-        android:layout_below="@+id/Status"
+        android:layout_below="@+id/Statut_Plante"
         android:layout_marginRight="20dp"
         android:layout_toRightOf="@+id/textView4"
         android:layout_toEndOf="@+id/textView4" />
@@ -150,10 +150,17 @@
         android:drawableLeft="@mipmap/ic_launcher"
         android:background="@color/blueClaire"
         android:text="  Ajouter une plante  "
-        android:id="@+id/button"
+        android:id="@+id/button_Aj_P"
         android:layout_marginTop="30dp"
         android:layout_centerVertical="true"
         android:layout_below="@id/Image"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/TxtNom"
+        android:textColor="@color/olive"/>
+
 
 </RelativeLayout>

@@ -25,4 +25,32 @@
         android:layout_marginTop="5dp"
         android:id="@+id/line"
         />
+
+    <TextView
+        android:id="@+id/T1"
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:layout_below="@id/Titre"
+        android:layout_marginTop="43dp"
+        android:layout_marginBottom="80dp"
+        android:textColor="@color/olive" />
+    />
+
+    <TextView
+        android:id="@+id/T2"
+        android:layout_width="match_parent"
+        android:layout_height="188dp"
+        android:layout_below="@id/T1"
+        android:layout_marginTop="33dp"
+        android:textColor="@color/olive" />
+    />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/T3"
+        android:layout_below="@id/T2"
+        android:textColor="@color/olive"/>
+    />
+
+
 </RelativeLayout>

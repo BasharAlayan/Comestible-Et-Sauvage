@@ -34,10 +34,8 @@ public class DataBase_Local extends SQLiteOpenHelper {
                 + COL2 + " VARCHAR(100) ,"
                 + COL3 + " VARCHAR(100) ,"
                 + COL4 + " VARCHAR(100) ,"
-                + COL5 + " VARCHAR(1000) )";
+                + COL5 + " BLOB )";
         db.execSQL(createTable);
-
-
     }
 
     @Override
@@ -48,33 +46,10 @@ public class DataBase_Local extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addPlante(String nom,String libelle,String statut,String image) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(COL2,nom);
-        contentValues.put(COL3,libelle);
-        contentValues.put(COL4,statut);
-        contentValues.put(COL5,image);
-
-        Log.d(TAG,"add Data: Adding "+nom +" "+ libelle +" "+statut+" "+image+" to "+TABLE_NAME);
-        long result =db.insert(TABLE_NAME,null,contentValues);
-        //s'il y a une erreur dans l'insertion ,le result return -1
-        if(result==-1){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
-
-
-
     public void addNewPlante(Plante newPlante){
         SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-
         values.put(COL2,newPlante.getNom());
         values.put(COL3,newPlante.getLibelle());
         values.put(COL4,newPlante.getStatut());
@@ -90,4 +65,8 @@ public class DataBase_Local extends SQLiteOpenHelper {
         Cursor data = database.rawQuery(query,null);
         return data;
     }
+
+
+
+
 }

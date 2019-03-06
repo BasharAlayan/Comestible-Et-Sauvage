@@ -29,8 +29,6 @@ public class Synch_plante extends AppCompatActivity {
         mlistView=(ListView) findViewById(R.id.listview);
         dataBase_global=new DataBase_Local(this);
         listview_DB();
-
-
     }
 
     class CustomAdapter extends BaseAdapter{
@@ -58,7 +56,7 @@ public class Synch_plante extends AppCompatActivity {
     }
 
     private void listview_DB(){
-        Log.d(TAG,"Displaying data in the ListView");
+       // Log.d(TAG,"Displaying data in the ListView");
 
         //recuperer les données et inserer dans la liste
         Cursor data=dataBase_global.getData();
@@ -67,10 +65,11 @@ public class Synch_plante extends AppCompatActivity {
             listdata.add(data.getString(1));
             listdata.add(data.getString(2));
             listdata.add(data.getString(3));
-            listdata.add(data.getString(4));
+            //listdata.add(data.getString(4));
 
         }
         ListAdapter adapter =new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,listdata);
+        mlistView=(ListView) findViewById(R.id.listview);
         mlistView.setAdapter(adapter);
 
 

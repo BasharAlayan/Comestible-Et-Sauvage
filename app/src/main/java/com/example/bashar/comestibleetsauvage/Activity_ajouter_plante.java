@@ -1,16 +1,23 @@
 package com.example.bashar.comestibleetsauvage;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Activity_ajouter_plante extends AppCompatActivity {
+
+    private static final int CAM_REQUEST=1313;
 
     private String nomP;
     private String libelleP;
@@ -19,6 +26,10 @@ public class Activity_ajouter_plante extends AppCompatActivity {
     private EditText NomP_TF;
     private EditText libelleP_TF;
     private EditText statutP_TF;
+
+    private ImageView imageView;
+    private byte[] photo;
+    private Button btnimage;
 
     DataBase_Local dataBase;
 
@@ -38,6 +49,12 @@ public class Activity_ajouter_plante extends AppCompatActivity {
         //get statut
         statutP_TF=(EditText)findViewById(R.id.Statut_Plante);
 
+        //photo
+        btnimage= (Button) findViewById(R.id.image_plante);
+        imageView=(ImageView)findViewById(R.id.photo);
+
+        btnimage.setOnClickListener(new btnTakePhotoClicker());
+
 
         dataBase=new DataBase_Local(this);
 
@@ -56,7 +73,7 @@ public class Activity_ajouter_plante extends AppCompatActivity {
                     Toast.makeText(Activity_ajouter_plante.this, "veuillez remplir tous les champs",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    dataBase.addNewPlante(new Plante(nomP,libelleP,statutP,"zz"));
+                    dataBase.addNewPlante(new Plante(nomP,libelleP,statutP,null));
                     NomP_TF.setText("");
                     libelleP_TF.setText("");
                     statutP_TF.setText("");
@@ -68,19 +85,6 @@ public class Activity_ajouter_plante extends AppCompatActivity {
         });
     }
 
-    /*
-    public void addData(String new_Nom, String new_Libelle, String new_Statut, String new_Image){
-        boolean insertData=dataBase.addPlante(new_Nom,new_Libelle,new_Statut,new_Image);
-        if(insertData){
-            Toast.makeText(Activity_ajouter_plante.this,""+nomP+" , "+libelleP+" , "+statutP ,Toast.LENGTH_LONG).show();
-        }
-        else{
-            Toast.makeText(Activity_ajouter_plante.this,"une erreur",Toast.LENGTH_LONG).show();
-
-        }
-
-    }
-    */
     public boolean checkNom(){
         if (nomP=="") {
             return false;
@@ -114,4 +118,29 @@ public class Activity_ajouter_plante extends AppCompatActivity {
             return true;
         }
     }
+
+    // pour ouvrir l'Appareil Photo
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == CAM_REQUEST){
+            Bitmap bitmap=(Bitmap) data.getExtras().get("data");
+            imageView.setImageBitmap(bitmap);
+        }
+    }
+
+    class btnTakePhotoClicker implements Button.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent,CAM_REQUEST);
+        }
+    }
+
+
+
 }

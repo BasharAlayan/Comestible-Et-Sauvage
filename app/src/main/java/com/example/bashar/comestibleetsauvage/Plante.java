@@ -6,7 +6,7 @@ public class Plante {
     private String Nom;
     private String Libelle;
     private String Statut;
-    private String Image;
+    private byte[] Image;
 
     public Plante(){
 
@@ -14,7 +14,7 @@ public class Plante {
 
 
 
-    public Plante(int id, String Nom, String Libelle, String Statut, String Image){
+    public Plante(int id, String Nom, String Libelle, String Statut, byte[] Image){
 
         this.id=id;
         this.Nom=Nom;
@@ -23,7 +23,7 @@ public class Plante {
         this.Image=Image;
     }
 
-    public Plante(String Nom,String Libelle,String Statut,String Image){
+    public Plante(String Nom,String Libelle,String Statut,byte[] Image){
 
         this.Nom=Nom;
         this.Libelle=Libelle;
@@ -63,11 +63,11 @@ public class Plante {
         Statut = statut;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return Image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         Image = image;
     }
 }

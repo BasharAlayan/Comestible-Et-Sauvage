@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +44,8 @@ public class Activity_ajouter_plante extends AppCompatActivity {
 
     DataBase_Local dataBase;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,8 @@ public class Activity_ajouter_plante extends AppCompatActivity {
         btnimage.setOnClickListener(new btnTakePhotoClicker());
 
 
+
+
         dataBase=new DataBase_Local(this);
 
         Button button = (Button)findViewById(R.id.button_Aj_P);
@@ -77,6 +82,8 @@ public class Activity_ajouter_plante extends AppCompatActivity {
                 nomP= NomP_TF.getText().toString();
                 libelleP= libelleP_TF.getText().toString();
                 statutP= statutP_TF.getText().toString();
+
+
 
 
                 if(nomP.equals("") || libelleP.equals("") || statutP.equals("")){

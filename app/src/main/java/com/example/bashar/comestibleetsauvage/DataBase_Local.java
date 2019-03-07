@@ -23,7 +23,9 @@ public class DataBase_Local extends SQLiteOpenHelper {
     private static final String COL2= "nom";
     private static final String COL3= "libelle";
     private static final String COL4= "statut";
-    private static final String COL5= "image";
+    private static final String COL5= "statut";
+    private static final String COL6= "statut";
+    //private static final String COL7= "image";
 
 
     public DataBase_Local(Context context){
@@ -39,6 +41,13 @@ public class DataBase_Local extends SQLiteOpenHelper {
                 + COL4 + " VARCHAR(100) ,"
                 + COL5 + " BLOB )";
         db.execSQL(createTable);
+
+    }
+
+    public void updateTable(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String query=""";
+        database.execSQL(query);
     }
 
     @Override
@@ -69,6 +78,14 @@ public class DataBase_Local extends SQLiteOpenHelper {
         return data;
     }
 
+    public Cursor numberRow(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String query="SELECT COUNT(*) FROM "+TABLE_NAME;
+        Cursor data = database.rawQuery(query,null);
+        return data;
+    }
+
+
     public Cursor a(){
         SQLiteDatabase database = this.getWritableDatabase();
         String query="SELECT "+COL2+" FROM "+TABLE_NAME;
@@ -83,6 +100,12 @@ public class DataBase_Local extends SQLiteOpenHelper {
         Cursor data = database.rawQuery(query,null);
         return data;
     }
+    public Cursor id(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String query="SELECT "+COL1+" FROM "+TABLE_NAME;
+        Cursor data = database.rawQuery(query,null);
+        return data;
+    }
 
 
     public Cursor c(){
@@ -92,12 +115,30 @@ public class DataBase_Local extends SQLiteOpenHelper {
         return data;
     }
 
+    public void DeleteRow(String id){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String query=" DELETE FROM "+TABLE_NAME+ " WHERE id = " +id;
+        database.execSQL(query);
+    }
+
 
     public void deleteData(){
         SQLiteDatabase database = this.getWritableDatabase();
         String query="DELETE FROM "+TABLE_NAME;
         database.execSQL(query);
+    }
 
+    public int CountPlantes(){
+        int planteCount=0;
+        String query="SELECT COUNT(*) FROM "+TABLE_NAME;
+        Cursor cursor=getReadableDatabase().rawQuery(query,null);
+
+        if(cursor.getCount()>0){
+            cursor.moveToFirst();
+            planteCount=cursor.getInt(0);
+        }
+        cursor.close();
+        return planteCount;
     }
 
     /*

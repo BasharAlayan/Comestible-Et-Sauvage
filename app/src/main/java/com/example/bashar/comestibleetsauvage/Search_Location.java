@@ -42,8 +42,8 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        //We create what is going to happen when we hit the 'rechercher' button
-        Button clickButton =(Button) findViewById(R.id.validerCoord);
+        //We create what is going to happen when we hit the 'Valider' button
+        Button clickButton =(Button) findViewById(R.id.Valider);
         clickButton.setOnClickListener( new View.OnClickListener()
         {
 

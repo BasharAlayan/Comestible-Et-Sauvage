@@ -9,13 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.bashar.comestibleetsauvage.SQL_local.DBHelper;
 import com.example.bashar.comestibleetsauvage.firebase.DataBaseManager;
 import com.example.bashar.comestibleetsauvage.firebase.DatabaseListener;
 import java.util.ArrayList;
 
 public class Activity_ajouter_plante extends AppCompatActivity
 {
-
+	private DBHelper db;
 	private String nomP;
 	private String libelleP;
 	private String statutP;
@@ -29,7 +31,7 @@ public class Activity_ajouter_plante extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ajouter_plante);
-
+		db = new DBHelper(this);
 		NomP_TF = (EditText) findViewById(R.id.Nom_Plante);
 		libelleP_TF = (EditText) findViewById(R.id.Libelle_Plante);
 		statutP_TF = (EditText) findViewById(R.id.Statut_Plante);
@@ -41,10 +43,13 @@ public class Activity_ajouter_plante extends AppCompatActivity
 			@Override
 			public void onClick(View v)
 			{
-
 				nomP = NomP_TF.getText().toString();
 				libelleP = libelleP_TF.getText().toString();
 				statutP = statutP_TF.getText().toString();
+				if(db.insertPlante(nomP,libelleP,statutP,"image"))
+				{
+					Toast.makeText(Activity_ajouter_plante.this,"done",Toast.LENGTH_LONG).show();
+				}
 				if (nomP.equals("") || libelleP.equals("") || statutP.equals(""))
 				{
 					Toast.makeText(Activity_ajouter_plante.this, "veuillez remplir tous les champs", Toast.LENGTH_LONG).show();
@@ -96,5 +101,6 @@ public class Activity_ajouter_plante extends AppCompatActivity
 				Toast.makeText(Activity_ajouter_plante.this, "Error", Toast.LENGTH_LONG).show();
 			}
 		}).addNewPlant(new Plante(nomP, libelleP, statutP, "Paris", ""));
+
 	}
 }

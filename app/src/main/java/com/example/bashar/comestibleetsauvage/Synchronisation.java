@@ -9,7 +9,7 @@ import android.widget.Button;
 public class Synchronisation extends AppCompatActivity {
 
     private Button Plante;
-    private Button Fonatine;
+    private Button Fontaine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +24,8 @@ public class Synchronisation extends AppCompatActivity {
             }
         });
 
-        Fonatine=(Button) findViewById(R.id.Syn_Fontaine);
-        Fonatine.setOnClickListener(new View.OnClickListener(){
+        Fontaine =(Button) findViewById(R.id.Syn_Fontaine);
+        Fontaine.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 open_activity_Syn_F();

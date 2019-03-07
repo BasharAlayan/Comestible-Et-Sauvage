@@ -17,7 +17,7 @@
             android:id="@+id/search"/>
 
         <Button
-            android:id="@+id/cordonnes"
+            android:id="@+id/validerCoord"
             android:layout_width="130dp"
             android:layout_height="fill_parent"
             android:layout_gravity="right"

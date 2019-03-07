@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/background">
+
+    <TextView
+        android:id="@+id/model_nom"
+        android:layout_width="276dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="15pt"
+        android:layout_marginTop="10pt"
+        android:textColor="@color/white"
+        android:text="aaaaaaa"
+        android:textSize="10pt" />
+
+    <TextView
+        android:id="@+id/model_libelle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/model_nom"
+        android:layout_marginLeft="15pt"
+        android:textColor="@color/white"
+        android:textSize="8pt"
+        android:text="bbbbbbbbbbbbbbbbbbbbb"
+        />
+    <TextView
+        android:id="@+id/model_statut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/model_libelle"
+        android:layout_marginLeft="15pt"
+        android:textSize="8pt"
+        android:text="ccccccccccc"
+        android:textColor="@color/white"
+        android:layout_marginBottom="5pt"
+/>
+
+    <Button
+        android:id="@+id/publier"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_below="@+id/model_libelle"
+        android:layout_marginTop="40dp"
+        android:text="Transmettre" />
+
+    <Button
+        android:id="@+id/supprimer"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_below="@+id/publier"
+        android:layout_marginLeft="46dp"
+        android:layout_marginTop="-37dp"
+        android:layout_toRightOf="@+id/publier"
+        android:text="Supprimer" />
+
+</RelativeLayout>

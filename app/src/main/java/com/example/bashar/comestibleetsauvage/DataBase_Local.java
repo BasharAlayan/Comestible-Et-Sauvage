@@ -3,8 +3,11 @@ package com.example.bashar.comestibleetsauvage;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
 public class DataBase_Local extends SQLiteOpenHelper {
@@ -66,7 +69,58 @@ public class DataBase_Local extends SQLiteOpenHelper {
         return data;
     }
 
+    public Cursor a(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String query="SELECT "+COL2+" FROM "+TABLE_NAME;
+        Cursor data = database.rawQuery(query,null);
+        return data;
+    }
 
+
+    public Cursor b(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String query="SELECT "+COL3+" FROM "+TABLE_NAME;
+        Cursor data = database.rawQuery(query,null);
+        return data;
+    }
+
+
+    public Cursor c(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String query="SELECT "+COL4+" FROM "+TABLE_NAME;
+        Cursor data = database.rawQuery(query,null);
+        return data;
+    }
+
+
+    public void deleteData(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String query="DELETE FROM "+TABLE_NAME;
+        database.execSQL(query);
+
+    }
+
+    /*
+
+    public byte[] getImageByid(int id){
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        SQLiteQueryBuilder queryBuilder=new SQLiteQueryBuilder();
+        String[] select ={COL1,COL2,COL3,COL4,COL5};
+
+        queryBuilder.setTables(TABLE_NAME);
+        Cursor c= (Cursor) queryBuilder.query(DATABASE_NAME,select," id = ?",new int[] {id},null,null);
+
+        byte[] result=null;
+        if(c.moveToFirst()){
+            do {
+                result=c.getBlob(c.getColumnIndex(COL5));
+
+            }while (c.moveToNext());
+        }
+        return result;
+    }
+*/
 
 
 }

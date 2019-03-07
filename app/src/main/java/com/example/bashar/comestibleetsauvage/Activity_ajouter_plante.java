@@ -1,10 +1,15 @@
 package com.example.bashar.comestibleetsauvage;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationManager;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +19,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Activity_ajouter_plante extends AppCompatActivity {
 
@@ -70,7 +80,7 @@ public class Activity_ajouter_plante extends AppCompatActivity {
 
 
                 if(nomP.equals("") || libelleP.equals("") || statutP.equals("")){
-                    Toast.makeText(Activity_ajouter_plante.this, "veuillez remplir tous les champs",Toast.LENGTH_LONG).show();
+                   Toast.makeText(Activity_ajouter_plante.this, "veuillez remplir tous les champs",Toast.LENGTH_LONG).show();
                 }
                 else {
                     dataBase.addNewPlante(new Plante(nomP,libelleP,statutP,null));
@@ -79,8 +89,6 @@ public class Activity_ajouter_plante extends AppCompatActivity {
                     statutP_TF.setText("");
                     Toast.makeText(Activity_ajouter_plante.this,""+nomP+" , "+libelleP+" , "+statutP ,Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
     }
@@ -140,7 +148,5 @@ public class Activity_ajouter_plante extends AppCompatActivity {
             startActivityForResult(intent,CAM_REQUEST);
         }
     }
-
-
 
 }

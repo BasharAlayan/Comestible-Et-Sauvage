@@ -31,7 +31,7 @@ public class Activity_rechercher extends AppCompatActivity {
     }
 
     public void open_activity_Maps(){
-        Intent intent = new Intent(this,MapsActivity.class);
+        Intent intent = new Intent(this,exxxxxxxx.class);
         startActivity(intent);
     }
     public void open_activity_Maps2(){

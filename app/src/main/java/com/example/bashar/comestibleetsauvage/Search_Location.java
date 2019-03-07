@@ -85,7 +85,7 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(27.746974, 85.301582);
+        LatLng sydney = new LatLng(37.4219983333335, -122.08400000000002);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Kathmandu, Nepal"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

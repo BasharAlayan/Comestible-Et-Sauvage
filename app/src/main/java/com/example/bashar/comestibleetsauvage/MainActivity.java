@@ -6,63 +6,51 @@ import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 
-public class MainActivity extends AppCompatActivity
-{
-	private Button ajouter;
-	private Button rechercher;
-	private Button syn;
+public class MainActivity extends AppCompatActivity {
+    private Button ajouter;
+    private Button rechercher;
+    private Button syn;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		ajouter = (Button) findViewById(R.id.Ajouter);
-		ajouter.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				open_activity_ajouter();
-			}
-		});
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ajouter=(Button) findViewById(R.id.Ajouter);
+        ajouter.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                open_activity_ajouter();
+            }
+        });
 
-		rechercher = (Button) findViewById(R.id.Rechercher);
-		rechercher.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				open_activity_Rechercher();
-			}
-		});
+        rechercher=(Button) findViewById(R.id.Rechercher);
+        rechercher.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                open_activity_Rechercher();
+            }
+        });
 
-		syn = (Button) findViewById(R.id.Synchro);
-		syn.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				open_activity_Syn();
-			}
-		});
-	}
 
-	public void open_activity_ajouter()
-	{
-		Intent intent = new Intent(this, Activity_Ajouter.class);
-		startActivity(intent);
-	}
+        syn=(Button) findViewById(R.id.Synchro);
+        syn.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+            open_activity_Syn();
+        }
+    });
+}
 
-	public void open_activity_Rechercher()
-	{
-		Intent intent = new Intent(this, Activity_rechercher.class);
-		startActivity(intent);
-	}
-
-	public void open_activity_Syn()
-	{
-		Intent intent = new Intent(this, Synchronisation.class);
-		startActivity(intent);
-	}
+    public void open_activity_ajouter(){
+        Intent intent = new Intent(this,Activity_Ajouter.class);
+        startActivity(intent);
+    }
+    public void open_activity_Rechercher(){
+        Intent intent = new Intent(this,Activity_rechercher.class);
+        startActivity(intent);
+    }
+    public void open_activity_Syn(){
+        Intent intent = new Intent(this,Synchronisation.class);
+        startActivity(intent);
+    }
 }

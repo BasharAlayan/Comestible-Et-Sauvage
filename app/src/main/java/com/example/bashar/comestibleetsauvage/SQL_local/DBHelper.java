@@ -26,6 +26,10 @@ public class DBHelper extends SQLiteOpenHelper
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+
+
+        //test
         db.execSQL("create table plante("
                 +"id  INTEGER PRIMARY KEY ,"
                 +"NomPlante  Varchar NOT NULL,"

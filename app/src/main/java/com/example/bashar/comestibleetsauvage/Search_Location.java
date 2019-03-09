@@ -9,14 +9,17 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -64,6 +67,58 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
                 }
             }
         });
+    }
+
+    public void onClick(View view){
+        switch(view.getId()){
+            case R.id.cordonnes:
+                EditText addressField = (EditText) findViewById(R.id.search);
+                String address = addressField.getText().toString();
+                List<Address> addressList = null;
+                MarkerOptions userMarkerOptions = new MarkerOptions();
+
+                if(!TextUtils.isEmpty(address)){
+                    Geocoder geocoder = new Geocoder(this);
+                    try {
+                        addressList = geocoder.getFromLocationName(address, 5);
+
+                        if(addressList != null){
+
+                            for(int i = 0; i < addressList.size(); i++){
+                                Address userAddress = addressList.get(i);
+                                LatLng coord = new LatLng(userAddress.getLatitude(), userAddress.getLongitude());
+
+                                userMarkerOptions.position(coord);
+                                //donner un titre
+                                userMarkerOptions.title(address);
+                                //changer la couleur
+                                userMarkerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+
+                                //Caméra se déplacer vers l'endroit indiqué
+                                mMap.moveCamera(CameraUpdateFactory.newLatLng(coord));
+                                //Zoom de caméra
+                                mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+                                //On ajoute le marqueur généré dans le marqueur général
+                                marker[0] = mMap.addMarker(userMarkerOptions);
+                                //Meme chose pour la lat et la lng
+                                lat = coord.latitude;
+                                lng = coord.longitude;
+                            }
+
+                        } else {
+                            Toast.makeText(this, "Position non trouvée...", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } catch(IOException e){
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    //Si l'utilisateu clique sans indiquer l'endroit, il reçoit un pop-up
+                    Toast.makeText(this, "Saisissez un endroit...", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
     }
 
     //Method used to open the next google map with the results

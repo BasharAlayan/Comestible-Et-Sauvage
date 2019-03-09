@@ -134,6 +134,7 @@
         android:layout_marginTop="25dp" />
 
     <Button
+        android:id="@+id/imgBtn"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@mipmap/photo"

@@ -97,22 +97,15 @@ public class Adapter extends ArrayAdapter<String> {
             }
         });
 
-
-        //FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-        //FirebaseApp.initializeApp(c);
-
-
         transmettre = (Button) convertView.findViewById(R.id.publier);
         transmettre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //create child in root object
-                //assigne values to the child object
-
-                databaseReference=FirebaseDatabase.getInstance().getReference(id[positionID]);
-
-                //databaseReference.child("idPlante").setValue(id[positionID]);
+//create child in root object
+                databaseReference=FirebaseDatabase.getInstance().getReference("Plantes/" +id[positionID]);
+//assigne values to the child object
+                databaseReference.child("idPlante").setValue(id[positionID]);
                 databaseReference.child("nomsPlante").setValue(noms[positionID]);
                 databaseReference.child("libellePlante").setValue(libelles[positionID]);
                 databaseReference.child("statutPlante").setValue(statut[positionID]);

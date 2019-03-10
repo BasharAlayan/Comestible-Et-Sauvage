@@ -1,5 +1,8 @@
 package com.example.bashar.comestibleetsauvage;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,11 +13,16 @@ public class MainActivity extends AppCompatActivity {
     private Button ajouter;
     private Button rechercher;
     private Button syn;
+    private ActionBar actionBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        actionBar=getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AAAFF")));
+        actionBar.setTitle("Accueil");
         ajouter=(Button) findViewById(R.id.Ajouter);
         ajouter.setOnClickListener(new View.OnClickListener(){
             @Override

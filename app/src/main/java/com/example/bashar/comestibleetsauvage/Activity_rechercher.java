@@ -1,6 +1,9 @@
 package com.example.bashar.comestibleetsauvage;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,10 +13,15 @@ public class Activity_rechercher extends AppCompatActivity {
 
     private Button ma_position;
     private Button recherche_position;
+    private ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rechercher);
+        actionBar=getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AAAFF")));
+        actionBar.setTitle("Rechercher");
+
         ma_position=(Button) findViewById(R.id.Ma_Position);
         ma_position.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -21,6 +29,7 @@ public class Activity_rechercher extends AppCompatActivity {
                 open_activity_Maps();
             }
         });
+
         recherche_position=(Button) findViewById(R.id.Choisir_Lieu);
         recherche_position.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -31,7 +40,7 @@ public class Activity_rechercher extends AppCompatActivity {
     }
 
     public void open_activity_Maps(){
-        Intent intent = new Intent(this,exxxxxxxx.class);
+        Intent intent = new Intent(this,MapsActivity.class);
         startActivity(intent);
     }
     public void open_activity_Maps2(){

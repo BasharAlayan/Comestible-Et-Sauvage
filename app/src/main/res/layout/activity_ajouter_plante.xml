@@ -7,26 +7,6 @@
     android:background="@drawable/background"
     tools:context="com.example.bashar.comestibleetsauvage.Activity_ajouter_plante">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ajouter une plante"
-        android:textSize="20dp"
-        android:textColor="@color/blueClaire"
-        android:id="@+id/Titre"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-
-        />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@color/blueClaire"
-        android:layout_below="@id/Titre"
-        android:layout_marginTop="5dp"
-        android:id="@+id/line"
-        />
-
 
     <EditText
         android:layout_width="250dp"
@@ -36,7 +16,6 @@
         android:background="@color/blueClaire"
         android:layout_marginTop="30dp"
         android:id="@+id/Nom_Plante"
-        android:layout_below="@+id/line"
         android:layout_marginRight="20dp"
         android:layout_toRightOf="@+id/textView"
         android:layout_toEndOf="@+id/textView" />

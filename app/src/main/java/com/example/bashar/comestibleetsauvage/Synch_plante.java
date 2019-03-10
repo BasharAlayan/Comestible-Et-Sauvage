@@ -1,19 +1,20 @@
 package com.example.bashar.comestibleetsauvage;
 
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Synch_plante extends AppCompatActivity {
 
@@ -23,27 +24,23 @@ public class Synch_plante extends AppCompatActivity {
     private static final String TAG = "Synch_plante";
     private Button transmettre;
     private Button supprimer;
+    private ActionBar actionBar;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_synch_plante);
+        actionBar=getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AAAFF")));
+        actionBar.setTitle("Synchronisation une Plante");
         mlistView = (ListView) findViewById(R.id.listview);
         dataBase_global = new DataBase_Local(this);
         listview_DB();
-/*
-        supprimer=(Button)findViewById(R.id.supprimer);
-        supprimer.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Synch_plante.this, "veuillez remplir tous les champs",Toast.LENGTH_LONG).show();
-
-            }
-        });
-*/
-    }
+  }
 
     class CustomAdapter extends BaseAdapter {
 
@@ -78,11 +75,15 @@ public class Synch_plante extends AppCompatActivity {
         String[] idTab = new String[numberRow];
         String[] libelleTab = new String[numberRow];
         String[] statutTab = new String[numberRow];
+        String[] latTab = new String[numberRow];
+        String[] lngTab = new String[numberRow];
 
         Cursor id = dataBase_global.id();
-        Cursor nom = dataBase_global.a();
-        Cursor libelle = dataBase_global.b();
-        Cursor statut = dataBase_global.c();
+        Cursor nom = dataBase_global.noms();
+        Cursor libelle = dataBase_global.libelles();
+        Cursor statut = dataBase_global.status();
+        Cursor lat = dataBase_global.lats();
+        Cursor lng = dataBase_global.lngs();
 
         int i = 0;
         while (nom.moveToNext()) {
@@ -95,6 +96,9 @@ public class Synch_plante extends AppCompatActivity {
 
         int u = 0;
         while (id.moveToNext()) {
+            if (id.getString(0) == "") {
+                break;
+            }
             idTab[u] = id.getString(0);
             u++;
         }
@@ -118,7 +122,27 @@ public class Synch_plante extends AppCompatActivity {
             z++;
 
         }
-        Adapter adapter = new Adapter(this, idTab, nomTab,libelleTab, statutTab);
+
+        z = 0;
+        while (lat.moveToNext()) {
+            if (lat.getString(0) == "") {
+                break;
+            }
+            latTab[z] = lat.getString(0);
+            z++;
+
+        }
+
+        z = 0;
+        while (lng.moveToNext()) {
+            if (lng.getString(0) == "") {
+                break;
+            }
+            lngTab[z] = lng.getString(0);
+            z++;
+
+        }
+        Adapter adapter = new Adapter(this, idTab, nomTab,libelleTab, statutTab,latTab,lngTab);
         mlistView.setAdapter(adapter);
 
     }

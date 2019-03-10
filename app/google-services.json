@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "627439308477",
+    "firebase_url": "https://groovy-granite-234021.firebaseio.com",
+    "project_id": "groovy-granite-234021",
+    "storage_bucket": "groovy-granite-234021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627439308477:android:de46f7496eff4335",
+        "android_client_info": {
+          "package_name": "com.example.bashar.comestibleetsauvage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627439308477-52j2jkum6tvumh23dnearramoohp3820.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bashar.comestibleetsauvage",
+            "certificate_hash": "03414ea89bd858f4baf4c5abbfd8edfb7ed0374c"
+          }
+        },
+        {
+          "client_id": "627439308477-qc2pplej9n6klvagiodoujhuakb0576a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfTh3SIHtXavUMUON8XqgcGhbzucAzzR8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "627439308477-qc2pplej9n6klvagiodoujhuakb0576a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

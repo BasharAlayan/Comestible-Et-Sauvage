@@ -12,21 +12,21 @@
         android:id="@+id/model_nom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15pt"
-        android:layout_marginTop="10pt"
-        android:layout_marginRight="15pt"
+        android:layout_marginLeft="10pt"
+        android:layout_marginTop="5pt"
+        android:layout_marginRight="10pt"
         android:layout_marginBottom="5pt"
         android:text="aaaaaaa"
         android:textColor="@color/white"
         android:textSize="11pt" />
-
     <TextView
         android:id="@+id/model_libelle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/model_nom"
-        android:layout_marginLeft="15pt"
-        android:layout_marginRight="15pt"
+        android:layout_marginLeft="10pt"
+        android:layout_marginTop="2pt"
+        android:layout_marginRight="10pt"
         android:text="bbbbbbbbbbbbbbbbbbbbb"
         android:textColor="@color/white"
         android:textSize="8pt" />
@@ -36,34 +36,61 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/model_libelle"
-        android:layout_marginLeft="15pt"
-        android:layout_marginRight="15pt"
-        android:layout_marginBottom="5pt"
+        android:layout_marginLeft="10pt"
+        android:layout_marginTop="2pt"
+        android:layout_marginRight="10pt"
         android:text="ccccccccccc"
         android:textColor="@color/white"
         android:textSize="8pt" />
 
     <Button
         android:id="@+id/publier"
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:layout_below="@+id/model_libelle"
-        android:layout_marginLeft="10pt"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="10pt"
+        android:layout_width="150dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/model_statut"
+        android:layout_marginLeft="15pt"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15pt"
         android:background="@drawable/rounded_bytton"
+        android:drawableLeft="@drawable/ic_action_name2"
+        android:layout_marginBottom="5dp"
         android:text="Transmettre" />
 
     <Button
         android:id="@+id/supprimer"
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:layout_below="@+id/publier"
-        android:layout_marginLeft="10pt"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10pt"
+        android:layout_width="150dp"
+        android:layout_height="34dp"
+        android:layout_below="@+id/model_statut"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toRightOf="@id/publier"
+        android:drawableLeft="@drawable/deleteicon"
         android:background="@drawable/rounded_button2"
-        android:text="Supprimer"
-        android:layout_marginBottom="15dp"/>
+        android:text="Supprimer" />
+
+    <TextView
+        android:id="@+id/lat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10pt"
+        android:layout_marginTop="5pt"
+        android:layout_marginRight="10pt"
+        android:layout_marginBottom="5pt"
+        android:text="aaaaaaa"
+        android:layout_below="@+id/supprimer"
+        android:textColor="@color/yellow"
+        android:textSize="11pt" />
+
+    <TextView
+        android:id="@+id/lng"
+        android:layout_width="364dp"
+        android:layout_height="47dp"
+        android:layout_below="@+id/lat"
+        android:layout_marginLeft="10pt"
+        android:layout_marginTop="2pt"
+        android:layout_marginRight="10pt"
+        android:text="bbbbbbbbbbbbbbbbbbbbb"
+        android:textColor="@color/red"
+        android:textSize="8pt" />
 
 </RelativeLayout>

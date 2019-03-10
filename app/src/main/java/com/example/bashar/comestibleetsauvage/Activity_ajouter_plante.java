@@ -1,30 +1,19 @@
 package com.example.bashar.comestibleetsauvage;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.location.Location;
-import android.location.LocationManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Activity_ajouter_plante extends AppCompatActivity {
 
@@ -41,15 +30,22 @@ public class Activity_ajouter_plante extends AppCompatActivity {
     private ImageView imageView;
     private byte[] photo;
     private Button btnimage;
+    private ActionBar actionBar;
 
     DataBase_Local dataBase;
 
 
+    Activity_ajouter_plante(){
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter_plante);
+        actionBar=getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AAAFF")));
+        actionBar.setTitle("Ajouter une Plante");
 
         //get nom plante
         NomP_TF=(EditText)findViewById(R.id.Nom_Plante);
@@ -87,14 +83,17 @@ public class Activity_ajouter_plante extends AppCompatActivity {
 
 
                 if(nomP.equals("") || libelleP.equals("") || statutP.equals("")){
-                   Toast.makeText(Activity_ajouter_plante.this, "veuillez remplir tous les champs",Toast.LENGTH_LONG).show();
+                    Toast.makeText(Activity_ajouter_plante.this, "veuillez remplir tous les champs",Toast.LENGTH_LONG).show();
                 }
                 else {
-                    dataBase.addNewPlante(new Plante(nomP,libelleP,statutP,null));
+                    dataBase.addNewPlante(new Plante(nomP,libelleP,statutP,null,null,null));
+
                     NomP_TF.setText("");
                     libelleP_TF.setText("");
                     statutP_TF.setText("");
                     Toast.makeText(Activity_ajouter_plante.this,""+nomP+" , "+libelleP+" , "+statutP ,Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Activity_ajouter_plante.this,Ajouter_Plante_Pos.class);
+                    Activity_ajouter_plante.this.startActivity(intent);
                 }
             }
         });
@@ -154,6 +153,16 @@ public class Activity_ajouter_plante extends AppCompatActivity {
             Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent,CAM_REQUEST);
         }
+    }
+
+    public String getNomPlante(){
+        return nomP;
+    }
+    public String getLibellePlante(){
+        return libelleP;
+    }
+    public String getStatutPlante(){
+        return statutP;
     }
 
 }

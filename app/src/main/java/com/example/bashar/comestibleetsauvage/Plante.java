@@ -8,27 +8,39 @@ public class Plante {
     private String Statut;
     private byte[] Image;
 
-    public Plante(){
+    private String lat;
+    private String lon;
+
+
+    public Plante() {
 
     }
 
 
+    public Plante(int id, String Nom, String Libelle, String Statut, byte[] Image) {
 
-    public Plante(int id, String Nom, String Libelle, String Statut, byte[] Image){
-
-        this.id=id;
-        this.Nom=Nom;
-        this.Libelle=Libelle;
-        this.Statut=Statut;
-        this.Image=Image;
+        this.id = id;
+        this.Nom = Nom;
+        this.Libelle = Libelle;
+        this.Statut = Statut;
+        this.Image = Image;
     }
 
-    public Plante(String Nom,String Libelle,String Statut,byte[] Image){
+    public Plante(String Nom, String Libelle, String Statut, byte[] Image, String lat, String lon) {
 
-        this.Nom=Nom;
-        this.Libelle=Libelle;
-        this.Statut=Statut;
-        this.Image=Image;
+        this.id = id;
+        this.Nom = Nom;
+        this.Libelle = Libelle;
+        this.Statut = Statut;
+        this.Image = Image;
+    }
+
+    public Plante(String Nom, String Libelle, String Statut, byte[] Image) {
+
+        this.Nom = Nom;
+        this.Libelle = Libelle;
+        this.Statut = Statut;
+        this.Image = Image;
     }
 
     public int getId() {
@@ -69,5 +81,21 @@ public class Plante {
 
     public void setImage(byte[] image) {
         Image = image;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        Nom = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        Libelle = lon;
     }
 }

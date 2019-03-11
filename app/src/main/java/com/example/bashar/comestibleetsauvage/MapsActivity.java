@@ -18,6 +18,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/**
+ * Controlleur de la map, qui sert à l'initaliser
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -26,6 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private double myLatitude,myLongitude;
 
     private ActionBar actionBar;
+
     //Lors de la création de la map
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,20 +50,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
         {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            //rien de plus n'est nécéssaire ici dans notre cas
             return;
         }
         mMap.setMyLocationEnabled(true);
         LocationManager locationManager=(LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,1000,0, new android.location.LocationListener() {
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,1000,0, new android.location.LocationListener()
+                {
                     @Override
-                    public void onLocationChanged(Location location) {
+                    public void onLocationChanged(Location location)
+                    {
                         myLatitude=location.getLatitude();
                         myLongitude=location.getLongitude();
 
@@ -80,22 +80,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
 
                     @Override
-                    public void onStatusChanged(String provider, int status, Bundle extras) {
-
+                    public void onStatusChanged(String provider, int status, Bundle extras)
+                    {
+                        //Inutilisé ici, mais présence nécéssaire
                     }
 
                     @Override
-                    public void onProviderEnabled(String provider) {
-
+                    public void onProviderEnabled(String provider)
+                    {
+                        //Inutilisé ici, mais présence nécéssaire
                     }
 
                     @Override
-                    public void onProviderDisabled(String provider) {
-
+                    public void onProviderDisabled(String provider)
+                    {
+                        //Inutilisé ici, mais présence nécéssaire
                     }
                 }
         );
         mMap.animateCamera(CameraUpdateFactory.zoomBy(2));
-
     }
 }

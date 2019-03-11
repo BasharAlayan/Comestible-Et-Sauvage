@@ -9,42 +9,36 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-public class Synch_plante extends AppCompatActivity {
-
-    //    Activity_ajouter_plante ajouter_plante;
+/**
+ * Classe servant à synchroniser une plante entre 2 BDD
+ */
+public class Synch_plante extends AppCompatActivity
+{
     DataBase_Local dataBase_global;
     private ListView mlistView;
-    private static final String TAG = "Synch_plante";
-    private Button transmettre;
-    private Button supprimer;
     private ActionBar actionBar;
 
-
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_synch_plante);
         actionBar=getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AAAFF")));
         actionBar.setTitle("Synchronisation une Plante");
-        mlistView = (ListView) findViewById(R.id.listview);
+        mlistView = findViewById(R.id.listview);
         dataBase_global = new DataBase_Local(this);
         listview_DB();
-  }
+    }
 
-    class CustomAdapter extends BaseAdapter {
-
-
+    //Classe inutilisée mais présente car peut être utile dans le futur
+    class CustomAdapter extends BaseAdapter
+    {
         @Override
         public int getCount() {
             return 0;
@@ -61,13 +55,14 @@ public class Synch_plante extends AppCompatActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, ViewGroup parent)
+        {
             return null;
         }
     }
 
-    private void listview_DB() {
-        // Log.d(TAG,"Displaying data in the ListView");
+    private void listview_DB()
+    {
 
         int numberRow = dataBase_global.CountPlantes();
 
@@ -86,8 +81,10 @@ public class Synch_plante extends AppCompatActivity {
         Cursor lng = dataBase_global.lngs();
 
         int i = 0;
-        while (nom.moveToNext()) {
-            if (nom.getString(0) == "") {
+        while (nom.moveToNext())
+        {
+            if (nom.getString(0) == "")
+            {
                 break;
             }
             nomTab[i] = nom.getString(0);
@@ -95,8 +92,10 @@ public class Synch_plante extends AppCompatActivity {
         }
 
         int u = 0;
-        while (id.moveToNext()) {
-            if (id.getString(0) == "") {
+        while (id.moveToNext())
+        {
+            if (id.getString(0) == "")
+            {
                 break;
             }
             idTab[u] = id.getString(0);
@@ -104,8 +103,10 @@ public class Synch_plante extends AppCompatActivity {
         }
 
         int j = 0;
-        while (libelle.moveToNext()) {
-            if (libelle.getString(0) == "") {
+        while (libelle.moveToNext())
+        {
+            if (libelle.getString(0) == "")
+            {
                 break;
             }
             libelleTab[j] = libelle.getString(0);
@@ -114,8 +115,10 @@ public class Synch_plante extends AppCompatActivity {
 
 
         int z = 0;
-        while (statut.moveToNext()) {
-            if (statut.getString(0) == "") {
+        while (statut.moveToNext())
+        {
+            if (statut.getString(0) == "")
+            {
                 break;
             }
             statutTab[z] = statut.getString(0);
@@ -124,8 +127,10 @@ public class Synch_plante extends AppCompatActivity {
         }
 
         z = 0;
-        while (lat.moveToNext()) {
-            if (lat.getString(0) == "") {
+        while (lat.moveToNext())
+        {
+            if (lat.getString(0) == "")
+            {
                 break;
             }
             latTab[z] = lat.getString(0);
@@ -134,8 +139,10 @@ public class Synch_plante extends AppCompatActivity {
         }
 
         z = 0;
-        while (lng.moveToNext()) {
-            if (lng.getString(0) == "") {
+        while (lng.moveToNext())
+        {
+            if (lng.getString(0) == "")
+            {
                 break;
             }
             lngTab[z] = lng.getString(0);

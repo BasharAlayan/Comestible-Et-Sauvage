@@ -16,12 +16,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/**
+ * Controlleur servant à choisir une position sur une map GoogleMap, position qui pourra ensuite être utilisée
+ */
 public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCallback
 {
 
     private GoogleMap mMap;
 
-    //The vars we need to store globally, lat and lng are sent to the next activity with Intent
+    //Les variables globales du controlleur, lat et lng étant envoyés à la page suivante via Intent
     private final Marker[] marker = new Marker[1];
     private Double lat;
     private Double lng;
@@ -38,8 +41,8 @@ public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCa
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        //We create what is going to happen when we hit the 'Valider' button
-        Button clickButton =(Button) findViewById(R.id.ValiderPos);
+        //On défini ce qui va se passe lors de la validation avec le bouton valider
+        Button clickButton = findViewById(R.id.ValiderPos);
         dataBase_local=new DataBase_Local(this);
         clickButton.setOnClickListener( new View.OnClickListener()
         {
@@ -49,8 +52,7 @@ public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCa
             {
                 if(marker[0]!= null)
                 {
-                    //TODO
-                    //CHANGE THE VALUE search_Location.class TO THE NAME OF THE NEXT GOOGLE MAP THAT WILL SHOW THE RESULTS
+                    // SEARCH_LOCATION représente la page suivante
                     //We create a new intent for the next activity
                     Intent intent = new Intent(getBaseContext(), Search_Location.class);
 
@@ -64,7 +66,7 @@ public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCa
                         dataBase_local.updateTableLAT();
                     }
 
-                    //Then we open the new activity
+                    //Ensuite, nous ouvrons cette autre activité
                     dataBase_local.addLat(lastId,""+lat);
                     dataBase_local.addLng(lastId,""+lng);
 
@@ -74,7 +76,7 @@ public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCa
         });
     }
 
-    //Method used to open the next google map with the results
+    //Methode utilisée afin d'ouvri la prochaine page google map
     public void open_activity_showResults()
     {
         //TODO
@@ -83,66 +85,33 @@ public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCa
         startActivity(intent);
     }
 
-    // Not used right now
-    /*
-    public void onSearch(View view){
-        EditText location_textF=(EditText)findViewById(R.id.search);
-        String location=location_textF.getText().toString();
-        List<Address> addressList=null;
-        if(location != null || !location.equals(""))
-        {
-            Geocoder geocoder = new Geocoder(this);
-            try {
-                addressList = geocoder.getFromLocationName(location, 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Address address = addressList.get(0);
-            LatLng latlng = new LatLng(address.getLatitude(), address.getLatitude());
-            mMap.addMarker(new MarkerOptions().position(latlng));
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(latlng));
-        }
-    }*/
-
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
         mMap = googleMap;
-
-
-        // Add a marker in Sydney and move the camera
-        /*
-        LatLng sydney = new LatLng(27.746974, 85.301582);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Somewhere, IDK"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
-        /*if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        mMap.setMyLocationEnabled(true);
-        */
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
         {
             @Override
             public void onMapClick(LatLng point)
             {
-                //If not null,  we remove the previous marker, so that there is only one marker at all times
+                //Si non null,  on enlève le marqueur précédent, car nous ne devons avoir qu'un seul marqueur a tout instant
                 if (marker[0] != null)
                 {
                     marker[0].remove();
                 }
 
-                //we add the marker to the map
+                //On ajoute le nouveau markeur à la map
                 marker[0] = mMap.addMarker(new MarkerOptions().position(point));
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(point));
 
-                //we add text with lat and lng to the top bar
-                EditText searchText = (EditText) findViewById(R.id.searchPos);
+                //FONCTIONNALITEE NON UTILISEE
+                //On ajouter le texte à la barre de recherche
+                /*EditText searchText = findViewById(R.id.searchPos);
                 lat = point.latitude;
                 lng = point.longitude;
-                searchText.setText(point.toString());
+                searchText.setText(point.toString());*/
             }
         });
     }
-
 }

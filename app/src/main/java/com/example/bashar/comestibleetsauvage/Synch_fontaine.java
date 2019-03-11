@@ -6,12 +6,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Synch_fontaine extends AppCompatActivity {
+/**
+ * Classe de synchronisation des fontaines entre les 2 BDD
+ */
+public class Synch_fontaine extends AppCompatActivity
+{
 
     private ActionBar actionBar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_synch_fontaine);
         actionBar=getSupportActionBar();

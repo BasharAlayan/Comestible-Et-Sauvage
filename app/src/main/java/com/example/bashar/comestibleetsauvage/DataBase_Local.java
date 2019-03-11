@@ -6,8 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DataBase_Local extends SQLiteOpenHelper {
-
+/**
+ * Classe servant à utiliser SQLlite dans le but de stocker les plantes et les fontaines localement
+ */
+public class DataBase_Local extends SQLiteOpenHelper
+{
     private static final String TAG= "DataBase_Global";
     private static final int DATABASE_VERSION= 1;
 
@@ -26,12 +29,15 @@ public class DataBase_Local extends SQLiteOpenHelper {
 
     private String LastId = "";
 
-    public DataBase_Local(Context context){
+    public DataBase_Local(Context context)
+    {
         super(context, DATABASE_NAME,null,DATABASE_VERSION);
     }
 
+    //création de la table SQL
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db)
+    {
         String createTable="CREATE TABLE " + TABLE_NAME +" ( "
                 + COL1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COL2 + " VARCHAR(100) ,"
@@ -45,14 +51,16 @@ public class DataBase_Local extends SQLiteOpenHelper {
     }
 
 
-    public void updateTableLAT(){
+    //Méthodes d'ajout,de modification et de supression dans la BDD locale
+    public void updateTableLAT()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
             String query = "ALTER TABLE " + TABLE_NAME + " ADD " + COL6 + " VARCHAR(100)";
             database.execSQL(query);
-
     }
 
-    public void updateTableLON(){
+    public void updateTableLON()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="ALTER TABLE "+TABLE_NAME+" ADD IF NOT EXISTS "+COL7+ " VARCHAR(100)";
         database.execSQL(query);
@@ -60,14 +68,16 @@ public class DataBase_Local extends SQLiteOpenHelper {
 
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    {
         //Drop older Table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         //Create tables again
         onCreate(db);
     }
 
-    public void addNewPlante(Plante newPlante){
+    public void addNewPlante(Plante newPlante)
+    {
         SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -81,7 +91,8 @@ public class DataBase_Local extends SQLiteOpenHelper {
         database.close();
     }
 
-    public void addNewPlantePos(Plante newPlante){
+    public void addNewPlantePos(Plante newPlante)
+    {
         SQLiteDatabase database = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -96,21 +107,24 @@ public class DataBase_Local extends SQLiteOpenHelper {
         database.close();
     }
 
-    public void addLat(String last_id,String lat){
+    public void addLat(String last_id,String lat)
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="UPDATE "+TABLE_NAME+" SET "+COL6 + " = "+lat +" WHERE "+COL1+" = " +last_id;
         database.execSQL(query);
 
     }
 
-    public void addLng(String last_id,String lng){
+    public void addLng(String last_id,String lng)
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="UPDATE "+TABLE_NAME+" SET "+COL7 + " = "+lng +" WHERE "+COL1+" = " +last_id;
         database.execSQL(query);
     }
 
 
-    public String getLastId(){
+    public String getLastId()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="SELECT MAX( " + COL1 + " ) FROM "+TABLE_NAME;
         Cursor data = database.rawQuery(query,null);
@@ -120,16 +134,17 @@ public class DataBase_Local extends SQLiteOpenHelper {
         return LastId;
     }
 
-
-
-    public Cursor getData(){
+    public Cursor getData()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="SELECT * FROM "+TABLE_NAME;
         Cursor data = database.rawQuery(query,null);
         return data;
     }
 
-    public Cursor numberRow(){
+    //POURRAIT ETRE UTILISEE DANS LE FUTUR
+    public Cursor numberRow()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="SELECT COUNT(*) FROM "+TABLE_NAME;
         Cursor data = database.rawQuery(query,null);
@@ -137,7 +152,8 @@ public class DataBase_Local extends SQLiteOpenHelper {
     }
 
 
-    public Cursor noms(){
+    public Cursor noms()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="SELECT "+COL2+" FROM "+TABLE_NAME;
         Cursor data = database.rawQuery(query,null);
@@ -145,88 +161,73 @@ public class DataBase_Local extends SQLiteOpenHelper {
     }
 
 
-    public Cursor libelles(){
+    public Cursor libelles()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="SELECT "+COL3+" FROM "+TABLE_NAME;
         Cursor data = database.rawQuery(query,null);
         return data;
     }
-    public Cursor id(){
+
+    public Cursor id()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="SELECT "+COL1+" FROM "+TABLE_NAME;
         Cursor data = database.rawQuery(query,null);
         return data;
     }
 
-
-    public Cursor status(){
+    public Cursor status()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="SELECT "+COL4+" FROM "+TABLE_NAME;
         Cursor data = database.rawQuery(query,null);
         return data;
     }
 
-    public Cursor lats(){
+    public Cursor lats()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="SELECT "+COL6+" FROM "+TABLE_NAME;
         Cursor data = database.rawQuery(query,null);
         return data;
     }
 
-    public Cursor lngs(){
+    public Cursor lngs()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="SELECT "+COL7+" FROM "+TABLE_NAME;
         Cursor data = database.rawQuery(query,null);
         return data;
     }
 
-    public void DeleteRow(String id){
+    public void DeleteRow(String id)
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query=" DELETE FROM "+TABLE_NAME+ " WHERE id = " +id;
         database.execSQL(query);
     }
 
-
-    public void deleteData(){
+    //POURRAIT ETRE UTILISEE DANS LE FUTUR
+    public void deleteData()
+    {
         SQLiteDatabase database = this.getWritableDatabase();
         String query="DELETE FROM "+TABLE_NAME;
         database.execSQL(query);
     }
 
-    public int CountPlantes(){
+    public int CountPlantes()
+    {
         int planteCount=0;
         String query="SELECT COUNT(*) FROM "+TABLE_NAME;
         Cursor cursor=getReadableDatabase().rawQuery(query,null);
 
-        if(cursor.getCount()>0){
+        if(cursor.getCount()>0)
+        {
             cursor.moveToFirst();
             planteCount=cursor.getInt(0);
         }
         cursor.close();
         return planteCount;
     }
-
-    /*
-
-    public byte[] getImageByid(int id){
-        SQLiteDatabase database = this.getWritableDatabase();
-
-        SQLiteQueryBuilder queryBuilder=new SQLiteQueryBuilder();
-        String[] select ={COL1,COL2,COL3,COL4,COL5};
-
-        queryBuilder.setTables(TABLE_NAME);
-        Cursor c= (Cursor) queryBuilder.query(DATABASE_NAME,select," id = ?",new int[] {id},null,null);
-
-        byte[] result=null;
-        if(c.moveToFirst()){
-            do {
-                result=c.getBlob(c.getColumnIndex(COL5));
-
-            }while (c.moveToNext());
-        }
-        return result;
-    }
-*/
-
-
 }

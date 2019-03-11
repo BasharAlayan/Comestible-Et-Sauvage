@@ -1,13 +1,8 @@
 package com.example.bashar.comestibleetsauvage;
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -46,17 +41,15 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
         mapFragment.getMapAsync(this);
 
         //We create what is going to happen when we hit the 'Valider' button
-        Button clickButton =(Button) findViewById(R.id.Valider);
+        Button clickButton = findViewById(R.id.Valider);
         clickButton.setOnClickListener( new View.OnClickListener()
         {
-
             @Override
             public void onClick(View v)
             {
                 if(marker[0]!= null)
                 {
-                    //TODO
-                    //CHANGE THE VALUE search_Location.class TO THE NAME OF THE NEXT GOOGLE MAP THAT WILL SHOW THE RESULTS
+                    //La valeur de Search_Location correspond à la prochaine page
                     //We create a new intent for the next activity
                     Intent intent = new Intent(getBaseContext(), Search_Location.class);
                     intent.putExtra("Lat", lat);
@@ -69,22 +62,28 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
         });
     }
 
-    public void onClick(View view){
-        switch(view.getId()){
+    public void onClick(View view)
+    {
+        switch(view.getId())
+        {
             case R.id.cordonnes:
-                EditText addressField = (EditText) findViewById(R.id.search);
+                EditText addressField = findViewById(R.id.search);
                 String address = addressField.getText().toString();
                 List<Address> addressList = null;
                 MarkerOptions userMarkerOptions = new MarkerOptions();
 
-                if(!TextUtils.isEmpty(address)){
+                if(!TextUtils.isEmpty(address))
+                {
                     Geocoder geocoder = new Geocoder(this);
-                    try {
+                    try
+                    {
                         addressList = geocoder.getFromLocationName(address, 5);
 
-                        if(addressList != null){
+                        if(addressList != null)
+                        {
 
-                            for(int i = 0; i < addressList.size(); i++){
+                            for(int i = 0; i < addressList.size(); i++)
+                            {
                                 Address userAddress = addressList.get(i);
                                 LatLng coord = new LatLng(userAddress.getLatitude(), userAddress.getLongitude());
 
@@ -105,91 +104,55 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
                                 lng = coord.longitude;
                             }
 
-                        } else {
+                        }
+                        else
+                        {
                             Toast.makeText(this, "Position non trouvée...", Toast.LENGTH_SHORT).show();
                         }
 
-                    } catch(IOException e){
+                    }
+                    catch(IOException e)
+                    {
                         e.printStackTrace();
                     }
 
-                } else {
-                    //Si l'utilisateu clique sans indiquer l'endroit, il reçoit un pop-up
+                }
+                else
+                {
+                    //Si l'utilisateur clique sans indiquer l'endroit, il reçoit un pop-up
                     Toast.makeText(this, "Saisissez un endroit...", Toast.LENGTH_SHORT).show();
                 }
-                break;
+            break;
         }
     }
 
-    //Method used to open the next google map with the results
+    //Méthode utilisée pour ouvrir la porchaine page avec les résultats de la recherche
     public void open_activity_showResults()
     {
-        //TODO
-        //THE REFERENCED ACTIVITY IS TO BE CHANGED BY A MAP WITH THE RESULTS
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }
-
-    // Not used right now
-    /*
-    public void onSearch(View view){
-        EditText location_textF=(EditText)findViewById(R.id.search);
-        String location=location_textF.getText().toString();
-        List<Address> addressList=null;
-        if(location != null || !location.equals(""))
-        {
-            Geocoder geocoder = new Geocoder(this);
-            try {
-                addressList = geocoder.getFromLocationName(location, 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Address address = addressList.get(0);
-            LatLng latlng = new LatLng(address.getLatitude(), address.getLatitude());
-            mMap.addMarker(new MarkerOptions().position(latlng));
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(latlng));
-        }
-    }*/
 
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
         mMap = googleMap;
 
-
-        // Add a marker in Sydney and move the camera
-        /*
-        LatLng sydney = new LatLng(27.746974, 85.301582);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Somewhere, IDK"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
-        /*if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        mMap.setMyLocationEnabled(true);
-        */
-
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
         {
             @Override
             public void onMapClick(LatLng point)
             {
-                //If not null,  we remove the previous marker, so that there is only one marker at all times
+                //Si non null, on enlève le marker précédent afin de n'avoir qu'un seul marqueur à tout instant
                 if (marker[0] != null)
                 {
                     marker[0].remove();
                 }
 
-                //we add the marker to the map
+                //On ajoute le marqueur à la map
                 marker[0] = mMap.addMarker(new MarkerOptions().position(point));
                 mMap.animateCamera(CameraUpdateFactory.newLatLng(point));
-
-                //we add text with lat and lng to the top bar
-                EditText searchText = (EditText) findViewById(R.id.search);
-                lat = point.latitude;
-                lng = point.longitude;
-                searchText.setText(point.toString());
             }
         });
     }
-
 }

@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 public class exxxxxxxx extends AppCompatActivity implements View.OnClickListener {
 
     private static final int REQUEST_LOCATION = 1;
@@ -31,8 +32,8 @@ public class exxxxxxxx extends AppCompatActivity implements View.OnClickListener
 
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
 
-        textView = (TextView)findViewById(R.id.text_location);
-        button = (Button)findViewById(R.id.button_location);
+        textView = findViewById(R.id.text_location);
+        button = findViewById(R.id.button_location);
 
         button.setOnClickListener(this);
 

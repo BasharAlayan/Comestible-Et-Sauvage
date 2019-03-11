@@ -15,8 +15,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+/**
+ * Controlleur de l'activité ajouter_plante.xml
+ * Contient le formulaire servant à ajouter une plante dans la BDD locale
+ */
 public class Activity_ajouter_plante extends AppCompatActivity {
 
+    //Variables globales du controlleur
     private static final int CAM_REQUEST=1313;
 
     private String nomP;
@@ -34,13 +39,10 @@ public class Activity_ajouter_plante extends AppCompatActivity {
 
     DataBase_Local dataBase;
 
-
-    Activity_ajouter_plante(){
-
-    }
-
+    //Lors de la création de la page
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter_plante);
         actionBar=getSupportActionBar();
@@ -48,44 +50,42 @@ public class Activity_ajouter_plante extends AppCompatActivity {
         actionBar.setTitle("Ajouter une Plante");
 
         //get nom plante
-        NomP_TF=(EditText)findViewById(R.id.Nom_Plante);
-
+        NomP_TF= findViewById(R.id.Nom_Plante);
 
         //get libelle
-        libelleP_TF=(EditText)findViewById(R.id.Libelle_Plante);
-
+        libelleP_TF= findViewById(R.id.Libelle_Plante);
 
         //get statut
-        statutP_TF=(EditText)findViewById(R.id.Statut_Plante);
+        statutP_TF= findViewById(R.id.Statut_Plante);
 
         //photo
-        btnimage= (Button) findViewById(R.id.image_plante);
-        imageView=(ImageView)findViewById(R.id.photo);
+        btnimage= findViewById(R.id.image_plante);
+        imageView= findViewById(R.id.photo);
 
+        //Bouton servant à prendre une photo
         btnimage.setOnClickListener(new btnTakePhotoClicker());
-
-
-
 
         dataBase=new DataBase_Local(this);
 
-        Button button = (Button)findViewById(R.id.button_Aj_P);
-        button.setOnClickListener(new View.OnClickListener() {
-
+        Button button = findViewById(R.id.button_Aj_P);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            //lors d'un click sur la page
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
 
                 nomP= NomP_TF.getText().toString();
                 libelleP= libelleP_TF.getText().toString();
                 statutP= statutP_TF.getText().toString();
 
-
-
-
-                if(nomP.equals("") || libelleP.equals("") || statutP.equals("")){
+                //Si les champs sont remplis, on peut envoyer la nouvelle à la BDD locale
+                if(nomP.equals("") || libelleP.equals("") || statutP.equals(""))
+                {
                     Toast.makeText(Activity_ajouter_plante.this, "veuillez remplir tous les champs",Toast.LENGTH_LONG).show();
                 }
-                else {
+                else
+                {
                     dataBase.addNewPlante(new Plante(nomP,libelleP,statutP,null,null,null));
 
                     NomP_TF.setText("");
@@ -99,69 +99,60 @@ public class Activity_ajouter_plante extends AppCompatActivity {
         });
     }
 
-    public boolean checkNom(){
-        if (nomP=="") {
-            return false;
-        }
-        else {
-            return true;
-        }
+    public boolean checkNom()
+    {
+        return nomP != "";
     }
 
-    public boolean checkLibelle(){
-        if (libelleP=="") {
-            return false;
-        }
-        else {
-            return true;
-        }
+    public boolean checkLibelle()
+    {
+        return libelleP != "";
     }
-    public boolean checkStatut(){
-        if (statutP=="") {
-            return false;
-        }
-        else {
-            return true;
-        }
+    public boolean checkStatut()
+    {
+        return statutP != "";
     }
-    public boolean checkImage(){
-        if (nomP=="") {
-            return false;
-        }
-        else {
-            return true;
-        }
+    public boolean checkImage()
+    {
+        return nomP != "";
     }
 
-    // pour ouvrir l'Appareil Photo
-
-
+    //Pour ouvrir l'Appareil Photo
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == CAM_REQUEST){
+        if(requestCode == CAM_REQUEST)
+        {
             Bitmap bitmap=(Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(bitmap);
         }
     }
 
-    class btnTakePhotoClicker implements Button.OnClickListener{
+    //Bouton pour prendre une photo
+    class btnTakePhotoClicker implements Button.OnClickListener
+    {
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View v)
+        {
             Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent,CAM_REQUEST);
         }
     }
 
-    public String getNomPlante(){
+    //Les getteurs
+    public String getNomPlante()
+    {
         return nomP;
     }
-    public String getLibellePlante(){
+    public String getLibellePlante()
+    {
         return libelleP;
     }
-    public String getStatutPlante(){
+    public String getStatutPlante()
+    {
         return statutP;
     }
 

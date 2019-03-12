@@ -31,7 +31,7 @@ public class Fontaine
     public String image;
     public String location;
     public String localImage;
-    public String sync;
+    public String sync = "0";
 
     public Fontaine()
     {

@@ -28,7 +28,11 @@ public class ConnectionChangingListener extends BroadcastReceiver
 				NetworkInfo ni = connectivityManager.getActiveNetworkInfo();
 				if (ni != null && ni.getState() == NetworkInfo.State.CONNECTED)
 				{
-					App.sync();
+					App.connected();
+				}
+				else
+				{
+					App.disconnected();
 				}
 			}
 		}

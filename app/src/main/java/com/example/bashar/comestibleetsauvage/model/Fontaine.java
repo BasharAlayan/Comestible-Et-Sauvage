@@ -86,6 +86,10 @@ public class Fontaine
         contentValues.put(Fontaine_COLUMN_LOCATION, location);
         db.insert(Fontaine_TABLE_NAME, null, contentValues);
     }
+    public void delete() {
+        SQLiteDatabase db = DBHelper.getInstance().getWritableDatabase();
+        db.execSQL("delete from " + Fontaine_TABLE_NAME + " where " + Fontaine_COLUMN_ID + "='" + this.id + "';");
+    }
     public void getFontaine(String id)
     {
         SQLiteDatabase db = DBHelper.getInstance().getReadableDatabase();

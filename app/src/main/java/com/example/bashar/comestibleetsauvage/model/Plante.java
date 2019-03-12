@@ -56,7 +56,10 @@ public class Plante
 		this.localImage = localImage;
 		this.location = location;
 	}
-
+	public void delete() {
+		SQLiteDatabase db = DBHelper.getInstance().getWritableDatabase();
+		db.execSQL("delete from " + PLANTE_TABLE_NAME + " where " + PLANTE_COLUMN_ID + "='" + this.id + "';");
+	}
 	public void replace()
 	{
 		SQLiteDatabase db = DBHelper.getInstance().getWritableDatabase();

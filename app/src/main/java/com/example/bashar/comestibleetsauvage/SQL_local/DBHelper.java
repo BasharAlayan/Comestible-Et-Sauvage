@@ -1,13 +1,6 @@
 package com.example.bashar.comestibleetsauvage.SQL_local;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.example.bashar.comestibleetsauvage.App;
 import com.example.bashar.comestibleetsauvage.model.Fontaine;
 import com.example.bashar.comestibleetsauvage.model.Plante;

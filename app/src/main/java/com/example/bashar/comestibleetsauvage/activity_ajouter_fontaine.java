@@ -159,7 +159,13 @@ public class activity_ajouter_fontaine extends AppCompatActivity {
     private void ajouterFontaine()
     {
         final String id = String.valueOf(new Date().getTime());
-        upload(id);
+        if (App.isConnected)
+            upload(id);
+        else
+            storeLocally(id);
+    }
+    private void storeLocally(String id) {
+        new Fontaine(id, nomF, libelleF, statutF, imagePath.getPath(), "paris F", imagePath.getPath()).insert();
     }
     @NeedsPermission({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
     void openGallery() {

@@ -101,9 +101,14 @@ public class Activity_ajouter_plante extends AppCompatActivity
 	private void ajouterPlante()
 	{
 		final String id = String.valueOf(new Date().getTime());
-		upload(id);
+		if (App.isConnected)
+			upload(id);
+		else
+			storeLocally(id);
 	}
-
+	private void storeLocally(String id) {
+		new Plante(id, nomP, libelleP, statutP, imagePath.getPath(), "paris P", imagePath.getPath()).insert();
+	}
 	private void upload(final String id)
 	{
 		new FilesController(new FilesListener()

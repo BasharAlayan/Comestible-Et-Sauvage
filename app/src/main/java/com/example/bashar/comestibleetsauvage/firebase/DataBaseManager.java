@@ -198,15 +198,15 @@ public class DataBaseManager
         data.put("locaion", plant.location);
 
 		// setting the object on the database
-		db.collection("plant").document().set(data).addOnSuccessListener(new OnSuccessListener<Void>()
+		db.collection("plant").document(plant.id).set(data).addOnSuccessListener(new OnSuccessListener<Void>()
 		{
 			@Override
 			public void onSuccess(Void aVoid)
 			{
 				// on success -> nothing will be done only insert to database locally -> this is a new data change will come back to you in the method listenForPlantsDataChange() -> process changes normally and
 				// return to the view to display
-				plant.sync = "1"; // inserted to remote database
-				plant.insert();
+				//plant.sync = "1"; // inserted to remote database
+				//plant.insert();
 			}
 		}).addOnFailureListener(new OnFailureListener()
 		{
@@ -215,6 +215,31 @@ public class DataBaseManager
 			{
 				plant.sync = "0"; // not inserted to remote database
 				plant.insert();
+				e.printStackTrace();
+				listener.onError(e.getMessage()); // on failure -> tell the waiting view that getting process failed and return the failure message
+			}
+		});
+	}
+	public void deletePlant(final Plante plant)
+	{
+		// setting the object on the database
+		db.collection("plant").document(plant.id).delete().addOnSuccessListener(new OnSuccessListener<Void>()
+		{
+			@Override
+			public void onSuccess(Void aVoid)
+			{
+				// on success -> nothing will be done only insert to database locally -> this is a new data change will come back to you in the method listenForPlantsDataChange() -> process changes normally and
+				// return to the view to display
+				//plant.sync = "1"; // inserted to remote database
+				//plant.insert();
+			}
+		}).addOnFailureListener(new OnFailureListener()
+		{
+			@Override
+			public void onFailure(@NonNull Exception e)
+			{
+//				plant.sync = "0"; // not inserted to remote database
+//				plant.insert();
 				e.printStackTrace();
 				listener.onError(e.getMessage()); // on failure -> tell the waiting view that getting process failed and return the failure message
 			}
@@ -232,15 +257,15 @@ public class DataBaseManager
         data.put("location", fontaine.location);
 
 		// setting the object on the database
-		db.collection("fontaine").document().set(data).addOnSuccessListener(new OnSuccessListener<Void>()
+		db.collection("fontaine").document(fontaine.id).set(data).addOnSuccessListener(new OnSuccessListener<Void>()
 		{
 			@Override
 			public void onSuccess(Void aVoid)
 			{
 				// on success -> nothing will be done only insert to database locally -> this is a new data change will come back to you in the method listenForPlantsDataChange() -> process changes normally and
 				// return to the view to display
-				fontaine.sync = "1"; // inserted to remote database
-				fontaine.insert();
+				//fontaine.sync = "1"; // inserted to remote database
+				//fontaine.insert();
 			}
 		}).addOnFailureListener(new OnFailureListener()
 		{
@@ -249,6 +274,32 @@ public class DataBaseManager
 			{
 				fontaine.sync = "0"; // not inserted to remote database
 				fontaine.insert();
+				e.printStackTrace();
+				listener.onError(e.getMessage()); // on failure -> tell the waiting view that getting process failed and return the failure message
+			}
+		});
+	}
+	public void deleteFontaine(final Fontaine fontaine)
+	{
+
+		// setting the object on the database
+		db.collection("fontaine").document(fontaine.id).delete().addOnSuccessListener(new OnSuccessListener<Void>()
+		{
+			@Override
+			public void onSuccess(Void aVoid)
+			{
+				// on success -> nothing will be done only insert to database locally -> this is a new data change will come back to you in the method listenForPlantsDataChange() -> process changes normally and
+				// return to the view to display
+				//fontaine.sync = "1"; // inserted to remote database
+				//fontaine.insert();
+			}
+		}).addOnFailureListener(new OnFailureListener()
+		{
+			@Override
+			public void onFailure(@NonNull Exception e)
+			{
+//				fontaine.sync = "0"; // not inserted to remote database
+//				fontaine.insert();
 				e.printStackTrace();
 				listener.onError(e.getMessage()); // on failure -> tell the waiting view that getting process failed and return the failure message
 			}

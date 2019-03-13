@@ -46,48 +46,43 @@ public class activity_ajouter_fontaine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter_fontaine);
 
-            NomF_TF=(EditText)findViewById(R.id.Nom_Fontaine);
-            libelleF_TF=(EditText)findViewById(R.id.Libelle_Fontaine);
-            statutF_TF=(EditText)findViewById(R.id.StatutFontaine);
-            Button imgBtn = findViewById(R.id.imgBtn);
-            Button button = (Button)findViewById(R.id.button_Aj_F);
-        imgBtn.setOnClickListener(new View.OnClickListener()
-        {
+        NomF_TF = (EditText) findViewById(R.id.Nom_Fontaine);
+        libelleF_TF = (EditText) findViewById(R.id.Libelle_Fontaine);
+        statutF_TF = (EditText) findViewById(R.id.StatutFontaine);
+        Button imgBtn = findViewById(R.id.imgBtn);
+        Button button = (Button) findViewById(R.id.button_Aj_F);
+        imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 activity_ajouter_fontainePermissionsDispatcher.openGalleryWithCheck(activity_ajouter_fontaine.this);
             }
         });
-            button.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    nomF= NomF_TF.getText().toString();
-                    libelleF= libelleF_TF.getText().toString();
-                    statutF= statutF_TF.getText().toString();
-                    if(nomF.equals("") || libelleF.equals("") || statutF.equals("")){
-                        Toast.makeText(activity_ajouter_fontaine.this, "veuillez remplir tous les champs",Toast.LENGTH_LONG).show();
-                    }
-                    else {
-                        Toast.makeText(activity_ajouter_fontaine.this,""+nomF+" , "+libelleF+" , "+statutF ,Toast.LENGTH_LONG).show();
-                    }
-                    ajouterFontaine();
+            @Override
+            public void onClick(View v) {
+                nomF = NomF_TF.getText().toString();
+                libelleF = libelleF_TF.getText().toString();
+                statutF = statutF_TF.getText().toString();
+                if (nomF.equals("") || libelleF.equals("") || statutF.equals("")) {
+                    Toast.makeText(activity_ajouter_fontaine.this, "veuillez remplir tous les champs", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(activity_ajouter_fontaine.this, "" + nomF + " , " + libelleF + " , " + statutF, Toast.LENGTH_LONG).show();
                 }
-            });
-        }
-    private void sendFontaine(String id, String url, String localPath)
-    {
-        new DataBaseManager(new DatabaseListener()
-        {
+                ajouterFontaine();
+            }
+        });
+    }
+
+    private void sendFontaine(String id, String url, String localPath) {
+        new DataBaseManager(new DatabaseListener() {
             @Override
             public void onPlanteRetrieved(ArrayList<Plante> data) {
 
             }
 
             @Override
-            public void onFontaineRetrieved(ArrayList<Fontaine> data)
-            {
+            public void onFontaineRetrieved(ArrayList<Fontaine> data) {
                 Toast.makeText(activity_ajouter_fontaine.this, String.valueOf(data.size()), Toast.LENGTH_LONG).show();
             }
 
@@ -97,80 +92,73 @@ public class activity_ajouter_fontaine extends AppCompatActivity {
             }
 
             @Override
-            public void onFontaineChanged(ArrayList<Fontaine> data)
-            {
+            public void onFontaineChanged(ArrayList<Fontaine> data) {
                 Toast.makeText(activity_ajouter_fontaine.this, String.valueOf(data.size()), Toast.LENGTH_LONG).show();
             }
 
             @Override
-            public void onError(String error)
-            {
+            public void onError(String error) {
                 Toast.makeText(activity_ajouter_fontaine.this, "Error", Toast.LENGTH_LONG).show();
             }
-        }).addNewFontaine(new Fontaine(id, nomF, libelleF, statutF, url,"paris F", localPath));
+        }).addNewFontaine(new Fontaine(id, nomF, libelleF, statutF, url, "paris F", localPath));
     }
-    private void upload(final String id)
-    {
-        new FilesController(new FilesListener()
-        {
+
+    private void upload(final String id) {
+        new FilesController(new FilesListener() {
             @Override
-            public void onFileUploaded(String url, String localPath)
-            {
+            public void onFileUploaded(String url, String localPath) {
                 sendFontaine(id, url, localPath);
             }
 
             @Override
-            public void onDownloadFinished()
-            {
+            public void onDownloadFinished() {
 
             }
 
             @Override
-            public void onError(String error)
-            {
-                sendFontaine(id, "", imagePath.getPath());
+            public void onError(String error) {
+                storeLocally(id);
             }
         }).upload(imagePath, id);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        try
-        {
-            if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK && data != null)
-            {
-                Uri imageUri = data.getData();
+        try {
+            if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
+                // Uri imageUri = data.getData();
 
-                if (imageUri != null)
-                {
-                    imagePath = imageUri;
-                }
-                else
-                {
+                Bitmap photo = (Bitmap) data.getExtras().get("data");
+
+                if (photo != null) {
+                    imagePath = Uri.parse("file://" + getUriFromExtra(photo));
+                } else {
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
                 }
             }
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    private void ajouterFontaine()
-    {
+
+    private void ajouterFontaine() {
         final String id = String.valueOf(new Date().getTime());
         if (App.isConnected)
             upload(id);
         else
             storeLocally(id);
     }
+
     private void storeLocally(String id) {
         new Fontaine(id, nomF, libelleF, statutF, imagePath.getPath(), "paris F", imagePath.getPath()).insert();
     }
-    @NeedsPermission({Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+
+    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
     void openGallery() {
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery, PICK_IMAGE);
+        // Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, PICK_IMAGE);
     }
 
     @Override
@@ -178,15 +166,13 @@ public class activity_ajouter_fontaine extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         activity_ajouter_fontainePermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
-    public String getRealPathFromURI(Uri contentUri)
-    {
+
+    public String getRealPathFromURI(Uri contentUri) {
         // can post image
-        if (contentUri != null)
-        {
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+        if (contentUri != null) {
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
             Cursor cursor = getContentResolver().query(contentUri, filePathColumn, null, null, null);
-            if (cursor != null)
-            {
+            if (cursor != null) {
                 cursor.moveToFirst();
                 int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 cursor.moveToFirst();
@@ -198,8 +184,7 @@ public class activity_ajouter_fontaine extends AppCompatActivity {
         return "";
     }
 
-    public String getUriFromExtra(Bitmap image)
-    {
+    public String getUriFromExtra(Bitmap image) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         return getRealPathFromURI(Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), image, "Title", null)));

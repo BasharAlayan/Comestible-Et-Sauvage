@@ -39,7 +39,7 @@ public class Liste_plante_firebase extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_plante_firebase);
-        listView = findViewById(R.id.listviewFirebase);
+        //listView = findViewById(R.id.listviewFirebase);
         planteList = new ArrayList<>();
         database_res = new Database_Res(Liste_plante_firebase.this);
         databaseReference = FirebaseDatabase.getInstance().getReference("Plantes");
@@ -98,7 +98,7 @@ public class Liste_plante_firebase extends AppCompatActivity {
                 }
 
                 PlantesList_Firebase adapter = new PlantesList_Firebase(Liste_plante_firebase.this, planteList);
-                listView.setAdapter(adapter);
+                //listView.setAdapter(adapter);
 
 
             }

@@ -137,7 +137,10 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
             double latDouble = Double.parseDouble(latTab[i]);
             double lngDouble = Double.parseDouble(lngTab[i]);
 
-            MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(latDouble, lngDouble)).title(nomTab[i]).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
+            MarkerOptions markerOptions = new MarkerOptions()
+                    .position(new LatLng(latDouble, lngDouble))
+                    .title(nomTab[i])
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
             googleMap.addMarker(markerOptions);
         }
 

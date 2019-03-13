@@ -35,6 +35,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="paddingPercent" value="-10" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -45,10 +46,10 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\moham\Bureau\icons8-nourriture-naturelle-48.png" />
-                                      <entry key="outputName" value="marker" />
+                                      <entry key="imageAsset" value="C:\Users\moham\Bureau\logoplantes.png" />
+                                      <entry key="outputName" value="logoapp" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="009600" />
+                                      <entry key="themeColor" value="24960e" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -130,6 +131,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>

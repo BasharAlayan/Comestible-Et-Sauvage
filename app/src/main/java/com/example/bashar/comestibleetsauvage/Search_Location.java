@@ -1,4 +1,5 @@
 package com.example.bashar.comestibleetsauvage;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.location.Address;
@@ -23,8 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
-public class Search_Location extends FragmentActivity implements OnMapReadyCallback
-{
+public class Search_Location extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     Database_Res database_res;
@@ -34,24 +34,30 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
     private Double lat;
     private Double lng;
 
+    int numberRow;
+    String[] nomTab;
+    String[] idTab;
+    String[] libelleTab;
+    String[] statutTab;
+    String[] latTab;
+    String[] lngTab;
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search__location);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        database_res = new Database_Res(Search_Location.this);
 
         //We create what is going to happen when we hit the 'Valider' button
         Button clickButton = findViewById(R.id.Valider);
         listview_DB();
-        clickButton.setOnClickListener( new View.OnClickListener()
-        {
+        clickButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(marker[0]!= null)
-                {
+            public void onClick(View v) {
+                if (marker[0] != null) {
                     //La valeur de Search_Location correspond à la prochaine page
                     //We create a new intent for the next activity
                     Intent intent = new Intent(getBaseContext(), Search_Location.class);
@@ -65,28 +71,22 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
         });
     }
 
-    public void onClick(View view)
-    {
-        switch(view.getId())
-        {
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.cordonnes:
                 EditText addressField = findViewById(R.id.search);
                 String address = addressField.getText().toString();
                 List<Address> addressList = null;
                 MarkerOptions userMarkerOptions = new MarkerOptions();
 
-                if(!TextUtils.isEmpty(address))
-                {
+                if (!TextUtils.isEmpty(address)) {
                     Geocoder geocoder = new Geocoder(this);
-                    try
-                    {
+                    try {
                         addressList = geocoder.getFromLocationName(address, 5);
 
-                        if(addressList != null)
-                        {
+                        if (addressList != null) {
 
-                            for(int i = 0; i < addressList.size(); i++)
-                            {
+                            for (int i = 0; i < addressList.size(); i++) {
                                 Address userAddress = addressList.get(i);
                                 LatLng coord = new LatLng(userAddress.getLatitude(), userAddress.getLongitude());
 
@@ -107,49 +107,45 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
                                 lng = coord.longitude;
                             }
 
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(this, "Position non trouvée...", Toast.LENGTH_SHORT).show();
                         }
 
-                    }
-                    catch(IOException e)
-                    {
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
 
-                }
-                else
-                {
+                } else {
                     //Si l'utilisateur clique sans indiquer l'endroit, il reçoit un pop-up
                     Toast.makeText(this, "Saisissez un endroit...", Toast.LENGTH_SHORT).show();
                 }
-            break;
+                break;
         }
     }
 
     //Méthode utilisée pour ouvrir la porchaine page avec les résultats de la recherche
-    public void open_activity_showResults()
-    {
-        Intent intent = new Intent(this,Liste_plante_firebase.class);
+    public void open_activity_showResults() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap)
-    {
+    public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        for (int i = 0; i < numberRow; i++) {
+            double latDouble = Double.parseDouble(latTab[i]);
+            double lngDouble = Double.parseDouble(lngTab[i]);
 
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
-        {
+            MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(latDouble, lngDouble)).title(nomTab[i]).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker));
+            googleMap.addMarker(markerOptions);
+        }
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
-            public void onMapClick(LatLng point)
-            {
+            public void onMapClick(LatLng point) {
                 //Si non null, on enlève le marker précédent afin de n'avoir qu'un seul marqueur à tout instant
-                if (marker[0] != null)
-                {
+                if (marker[0] != null) {
                     marker[0].remove();
                 }
 
@@ -159,17 +155,15 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
             }
         });
     }
-    private void listview_DB()
-    {
 
-/*
-        int numberRow = database_res.CountPlantes();
-        String[] nomTab = new String[numberRow];
-        String[] idTab = new String[numberRow];
-        String[] libelleTab = new String[numberRow];
-        String[] statutTab = new String[numberRow];
-        String[] latTab = new String[numberRow];
-        String[] lngTab = new String[numberRow];
+    private void listview_DB() {
+        numberRow = database_res.CountPlantes();
+        nomTab = new String[numberRow];
+        idTab = new String[numberRow];
+        libelleTab = new String[numberRow];
+        statutTab = new String[numberRow];
+        latTab = new String[numberRow];
+        lngTab = new String[numberRow];
 
         Cursor id = database_res.id();
         Cursor nom = database_res.noms();
@@ -179,10 +173,8 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
         Cursor lng = database_res.lngs();
 
         int i = 0;
-        while (nom.moveToNext())
-        {
-            if (nom.getString(0) == "")
-            {
+        while (nom.moveToNext()) {
+            if (nom.getString(0) == "") {
                 break;
             }
             nomTab[i] = nom.getString(0);
@@ -190,10 +182,8 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
         }
 
         int u = 0;
-        while (id.moveToNext())
-        {
-            if (id.getString(0) == "")
-            {
+        while (id.moveToNext()) {
+            if (id.getString(0) == "") {
                 break;
             }
             idTab[u] = id.getString(0);
@@ -201,10 +191,8 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
         }
 
         int j = 0;
-        while (libelle.moveToNext())
-        {
-            if (libelle.getString(0) == "")
-            {
+        while (libelle.moveToNext()) {
+            if (libelle.getString(0) == "") {
                 break;
             }
             libelleTab[j] = libelle.getString(0);
@@ -213,10 +201,8 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
 
 
         int z = 0;
-        while (statut.moveToNext())
-        {
-            if (statut.getString(0) == "")
-            {
+        while (statut.moveToNext()) {
+            if (statut.getString(0) == "") {
                 break;
             }
             statutTab[z] = statut.getString(0);
@@ -225,10 +211,8 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
         }
 
         z = 0;
-        while (lat.moveToNext())
-        {
-            if (lat.getString(0) == "")
-            {
+        while (lat.moveToNext()) {
+            if (lat.getString(0) == "") {
                 break;
             }
             latTab[z] = lat.getString(0);
@@ -237,10 +221,8 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
         }
 
         z = 0;
-        while (lng.moveToNext())
-        {
-            if (lng.getString(0) == "")
-            {
+        while (lng.moveToNext()) {
+            if (lng.getString(0) == "") {
                 break;
             }
             lngTab[z] = lng.getString(0);
@@ -248,8 +230,9 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
 
         }
 
-        Adapter adapter = new Adapter(this, idTab, nomTab,libelleTab, statutTab,latTab,lngTab);
-*/
+        Adapter adapter = new Adapter(this, idTab, nomTab, libelleTab, statutTab, latTab, lngTab);
+
+
     }
 
 }

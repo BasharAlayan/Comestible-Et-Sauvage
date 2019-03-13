@@ -1,5 +1,6 @@
 package com.example.bashar.comestibleetsauvage;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -55,6 +56,7 @@ public class Adapter extends ArrayAdapter<String>
         this.lng = lng;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
@@ -76,19 +78,20 @@ public class Adapter extends ArrayAdapter<String>
 
         //Initializer les View
         // idV = convertView.findViewById(R.id.id);
+        //latV = convertView.findViewById(R.id.lat);
+        //lngV = convertView.findViewById(R.id.lng);
         nomV = convertView.findViewById(R.id.model_nom);
         libelleV = convertView.findViewById(R.id.model_libelle);
         statutV = convertView.findViewById(R.id.model_statut);
-        latV = convertView.findViewById(R.id.lat);
-        lngV = convertView.findViewById(R.id.lng);
+
 
         //ASSIGN DATA
         //idV.setText(id[position]);
         nomV.setText(noms[position]);
-        libelleV.setText(libelles[position]);
-        statutV.setText(statut[position]);
-        latV.setText(lat[position]);
-        lngV.setText(lng[position]);
+        libelleV.setText("La Libellé : "+libelles[position]);
+        statutV.setText("Le Statut : "+statut[position]);
+        //latV.setText(lat[position]);
+        //lngV.setText(lng[position]);
 
         final int positionID = position;
         supprimer = convertView.findViewById(R.id.supprimer);

@@ -16,6 +16,7 @@ public class PlantesList_Firebase extends ArrayAdapter<Plante> {
     Database_Res database_res;
 
 
+
     public PlantesList_Firebase(Activity context, List<Plante> planteList) {
         super(context, R.layout.model_firebase_plante, planteList);
         this.context = context;
@@ -35,9 +36,7 @@ public class PlantesList_Firebase extends ArrayAdapter<Plante> {
         TextView lng = (TextView) listViewitem.findViewById(R.id.LngPlanteFirebase);
 
         Plante plante = planteList.get(position);
-        database_res=new Database_Res(context);
-        database_res.createTable();
-        database_res.addDataRes(plante.getId(),plante.getNom(),plante.getLibelle(),plante.getStatut(),null,plante.getLat(),plante.getLon());
+
 
         nom.setText(plante.getNom());
         libelle.setText(plante.getLibelle());

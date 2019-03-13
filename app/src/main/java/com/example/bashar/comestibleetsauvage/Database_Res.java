@@ -79,7 +79,7 @@ public class Database_Res extends SQLiteOpenHelper {
         database.insert(TABLE_NAME, null, values);
         database.close();
     }
-
+/*
     public void addDataRes(String Id, String Nom, String Libelle, String Statut, byte[] Image, String lat, String lng) {
 
         SQLiteDatabase database = this.getWritableDatabase();
@@ -96,7 +96,29 @@ public class Database_Res extends SQLiteOpenHelper {
         database.insert(TABLE_NAME, null, values);
         database.close();
     }
-    public Cursor noms() {
+*/
+    public void InsertData(String Id, String Nom, String Libelle, String Statut, byte[] Image, String lat, String lng) {
+        /*
+        SQLiteDatabase database = this.getWritableDatabase();
+        String InsertData = " INSERT INTO "+TABLE_NAME+" VALUES "+ " ( " +Id+" , "+Nom+ "," +Libelle+ "," +Statut+ "," +null+","+lat+","+lng+" )";
+        database.execSQL(InsertData);
+    */
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COL1, Id);
+        values.put(COL2, Nom);
+        values.put(COL3, Libelle);
+        values.put(COL4, Statut);
+        values.put(COL5, Image);
+        values.put(COL6, lat);
+        values.put(COL7, lng);
+
+        database.insert(TABLE_NAME, null, values);
+        database.close();
+    }
+
+        public Cursor noms() {
         SQLiteDatabase database = this.getWritableDatabase();
         String query = "SELECT " + COL2 + " FROM " + TABLE_NAME;
         Cursor data = database.rawQuery(query, null);
@@ -150,6 +172,12 @@ public class Database_Res extends SQLiteOpenHelper {
         }
         cursor.close();
         return planteCount;
+    }
+    public void deleteData(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String InsertData = " DELETE FROM "+TABLE_NAME ;
+        database.execSQL(InsertData);
+
     }
 
 }

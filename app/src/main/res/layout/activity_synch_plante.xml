@@ -7,14 +7,16 @@
     android:background="@drawable/background"
     tools:context=".Synch_plante">
 
+
+
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
         android:divider="@color/blueClaire"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1dp"
+        android:headerDividersEnabled="true"/>
 
 
 

@@ -91,30 +91,12 @@ public class Activity_ajouter_plante extends AppCompatActivity {
                     NomP_TF.setText("");
                     libelleP_TF.setText("");
                     statutP_TF.setText("");
-                    Toast.makeText(Activity_ajouter_plante.this,""+nomP+" , "+libelleP+" , "+statutP ,Toast.LENGTH_LONG).show();
+                    Toast.makeText(Activity_ajouter_plante.this,"veuillez choisir le lieu" ,Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Activity_ajouter_plante.this,Ajouter_Plante_Pos.class);
                     Activity_ajouter_plante.this.startActivity(intent);
                 }
             }
         });
-    }
-
-    public boolean checkNom()
-    {
-        return nomP != "";
-    }
-
-    public boolean checkLibelle()
-    {
-        return libelleP != "";
-    }
-    public boolean checkStatut()
-    {
-        return statutP != "";
-    }
-    public boolean checkImage()
-    {
-        return nomP != "";
     }
 
     //Pour ouvrir l'Appareil Photo
@@ -140,20 +122,6 @@ public class Activity_ajouter_plante extends AppCompatActivity {
             Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent,CAM_REQUEST);
         }
-    }
-
-    //Les getteurs
-    public String getNomPlante()
-    {
-        return nomP;
-    }
-    public String getLibellePlante()
-    {
-        return libelleP;
-    }
-    public String getStatutPlante()
-    {
-        return statutP;
     }
 
 }

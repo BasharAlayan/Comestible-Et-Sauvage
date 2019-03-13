@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
     }
     public void open_activity_Rechercher()
     {
-        Intent intent = new Intent(this,Activity_rechercher.class);
+        Intent intent = new Intent(this,Liste_plante_firebase.class);
         startActivity(intent);
     }
     public void open_activity_Syn()

@@ -107,6 +107,7 @@ public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCa
     {
         //TODO
         //THE REFERENCED ACTIVITY IS TO BE CHANGED BY A MAP WITH THE RESULTS
+        Toast.makeText(Ajouter_Plante_Pos.this,"Vous avez ajouté une plante" ,Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
     }

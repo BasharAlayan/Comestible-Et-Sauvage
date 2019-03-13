@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/NomPlanteFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nom plante"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/LibellePlanteFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="libelle plante"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/StatutPlanteFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="statut plante"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/IdPlanteFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="id plante"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/LatPlanteFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lat plante"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/LngPlanteFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lng plante"
+        android:textColor="@color/white"/>
+
+
+</LinearLayout>

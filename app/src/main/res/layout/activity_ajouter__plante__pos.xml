@@ -1,30 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
 
-        <EditText
-            android:layout_width="278dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchPos"/>
 
-        <Button
-            android:id="@+id/cordonnesPos"
-            android:layout_width="130dp"
-            android:layout_height="fill_parent"
-            android:layout_gravity="right"
-            android:background="@color/blueClaire"
+    <Button
+        android:id="@+id/Ma_Position_Aj_Plante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blueClaire"
+        android:text="Ma Position"
+        android:drawableLeft="@drawable/ma_pos"
+        />
 
-            android:text="Rechercher" />
-    </LinearLayout>
+
+    <Button
+        android:id="@+id/ValiderPos"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content"
+        android:text="Choisir Lieu"
+        android:background="@color/blueClaire"
+        android:drawableLeft="@drawable/choose_pos"
+        android:textAlignment="center" />
+
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:map="http://schemas.android.com/apk/res-auto"
@@ -32,12 +36,7 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="fill_parent"
-        android:layout_height="460dp"
+        android:layout_height="639dp"
         tools:context=".Ajouter_Plante_Pos" />
 
-    <Button
-        android:id="@+id/ValiderPos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Valider" />
 </LinearLayout>

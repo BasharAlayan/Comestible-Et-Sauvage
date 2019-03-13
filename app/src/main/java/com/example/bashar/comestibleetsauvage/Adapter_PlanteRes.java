@@ -14,10 +14,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * Classe Adapter, servant à faire le lien entre SQLlite et firebase
- */
-public class Adapter extends ArrayAdapter<String>
+public class Adapter_PlanteRes extends ArrayAdapter<String>
 {
 
     //Les variables
@@ -33,15 +30,16 @@ public class Adapter extends ArrayAdapter<String>
 
     LayoutInflater inflater;
     Button supprimer;
-    Button transmettre;
+
+
     private int positionID;
-    DataBase_Local db;
+    Database_Res db;
 
     //Firebase
     DatabaseReference databaseReference;
 
     //Méthode Adapter, servant faire le lien entre les attributs des 2 tables
-    public Adapter(Context context, String[] id, String[] noms, String[] libelles, String[] statut,String[] lat ,String[] lng)
+    public Adapter_PlanteRes(Context context, String[] id, String[] noms, String[] libelles, String[] statut,String[] lat ,String[] lng)
     {
         super(context, R.layout.model, noms);
 
@@ -62,7 +60,7 @@ public class Adapter extends ArrayAdapter<String>
         if (convertView == null)
         {
             inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.model, null);
+            convertView = inflater.inflate(R.layout.activity_search__location, null);
         }
 
         // TextView idV;
@@ -76,6 +74,7 @@ public class Adapter extends ArrayAdapter<String>
 
         //Initializer les View
         // idV = convertView.findViewById(R.id.id);
+        /*
         nomV = convertView.findViewById(R.id.model_nom);
         libelleV = convertView.findViewById(R.id.model_libelle);
         statutV = convertView.findViewById(R.id.model_statut);
@@ -89,53 +88,26 @@ public class Adapter extends ArrayAdapter<String>
         statutV.setText(statut[position]);
         latV.setText(lat[position]);
         lngV.setText(lng[position]);
-
+*/
         final int positionID = position;
+        /*
         supprimer = convertView.findViewById(R.id.supprimer);
         supprimer.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                db = new DataBase_Local(c);
+                db = new Database_Res(c);
                 db.DeleteRow(id[positionID]);
                 Toast.makeText(c, "Vous avez supprimé la plante "+noms[positionID] ,Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(c,MainActivity.class);
                 c.startActivity(intent);
             }
         });
+        */
 
-        transmettre = convertView.findViewById(R.id.publier);
-        transmettre.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-
-                //creation du child dans l'objet root
-                databaseReference=FirebaseDatabase.getInstance().getReference("Plantes");
-
-                //assignation des valeurs Dans l'objet child
-                /*
-                databaseReference.child("idPlante").setValue(id[positionID]);
-                databaseReference.child("nomsPlante").setValue(noms[positionID]);
-                databaseReference.child("libellePlante").setValue(libelles[positionID]);
-                databaseReference.child("statutPlante").setValue(statut[positionID]);
-                databaseReference.child("imagePlante").setValue(null);
-                databaseReference.child("latPlante").setValue(lat[positionID]);
-                databaseReference.child("lngPlante").setValue(lng[positionID]);
-*/
-                Plante plante =new Plante(id[positionID],noms[positionID],libelles[positionID],statut[positionID],null,lat[positionID],lng[positionID]);
-                databaseReference.push().setValue(plante);
-
-                db = new DataBase_Local(c);
-                db.DeleteRow(id[positionID]);
-
-                Toast.makeText(c, "Vous avez transmis la plante "+noms[positionID] ,Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(c,MainActivity.class);
-                c.startActivity(intent);
-            }
-        });
         return convertView;
     }
 }
+
+

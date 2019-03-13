@@ -3,9 +3,8 @@ package com.example.bashar.comestibleetsauvage;
 /**
  * Classe java classique représentant une plante
  */
-public class Plante
-{
-    private int id;
+public class Plante {
+    private String id;
     private String Nom;
     private String Libelle;
     private String Statut;
@@ -16,14 +15,12 @@ public class Plante
 
 
     //Constructeur vide inutilisé
-    public Plante()
-    {
+    public Plante() {
 
     }
 
     //Constructeurs
-    public Plante(int id, String Nom, String Libelle, String Statut, byte[] Image)
-    {
+    public Plante(String id, String Nom, String Libelle, String Statut, byte[] Image) {
 
         this.id = id;
         this.Nom = Nom;
@@ -32,18 +29,28 @@ public class Plante
         this.Image = Image;
     }
 
-    public Plante(String Nom, String Libelle, String Statut, byte[] Image, String lat, String lon)
-    {
+    public Plante(String Nom, String Libelle, String Statut, byte[] Image, String lat, String lon) {
 
-        this.id = id;
         this.Nom = Nom;
         this.Libelle = Libelle;
         this.Statut = Statut;
         this.Image = Image;
+        this.lat=lat;
+        this.lon=lon;
     }
 
-    public Plante(String Nom, String Libelle, String Statut, byte[] Image)
-    {
+    public Plante(String id,String Nom, String Libelle, String Statut, byte[] Image, String lat, String lon) {
+
+        this.id=id;
+        this.Nom = Nom;
+        this.Libelle = Libelle;
+        this.Statut = Statut;
+        this.Image = Image;
+        this.lat=lat;
+        this.lon=lon;
+    }
+
+    public Plante(String Nom, String Libelle, String Statut, byte[] Image) {
 
         this.Nom = Nom;
         this.Libelle = Libelle;
@@ -52,73 +59,59 @@ public class Plante
     }
 
     //Les Getteurs et les Setteurs
-    public int getId()
-    {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id)
-    {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getNom()
-    {
+    public String getNom() {
         return Nom;
     }
 
-    public void setNom(String nom)
-    {
-        Nom = nom;
+    public void setNom(String nom) {
+        this.Nom = nom;
     }
 
-    public String getLibelle()
-    {
+    public String getLibelle() {
         return Libelle;
     }
 
-    public void setLibelle(String libelle)
-    {
-        Libelle = libelle;
+    public void setLibelle(String libelle) {
+        this.Libelle = libelle;
     }
 
-    public String getStatut()
-    {
+    public String getStatut() {
         return Statut;
     }
 
-    public void setStatut(String statut)
-    {
-        Statut = statut;
+    public void setStatut(String statut) {
+        this.Statut = statut;
     }
 
-    public byte[] getImage()
-    {
+    public byte[] getImage() {
         return Image;
     }
 
-    public void setImage(byte[] image)
-    {
+    public void setImage(byte[] image) {
         Image = image;
     }
 
-    public String getLat()
-    {
+    public String getLat() {
         return lat;
     }
 
-    public void setLat(String lat)
-    {
-        Nom = lat;
+    public void setLat(String lat) {
+        this.lat = lat;
     }
 
-    public String getLon()
-    {
+    public String getLon() {
         return lon;
     }
 
-    public void setLon(String lon)
-    {
-        Libelle = lon;
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 }

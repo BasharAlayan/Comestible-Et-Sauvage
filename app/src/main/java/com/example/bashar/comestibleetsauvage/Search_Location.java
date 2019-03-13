@@ -1,5 +1,6 @@
 package com.example.bashar.comestibleetsauvage;
 import android.content.Intent;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
 {
 
     private GoogleMap mMap;
+    Database_Res database_res;
 
     //The vars we need to store globally, lat and lng are sent to the next activity with Intent
     private final Marker[] marker = new Marker[1];
@@ -42,6 +44,7 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
 
         //We create what is going to happen when we hit the 'Valider' button
         Button clickButton = findViewById(R.id.Valider);
+        listview_DB();
         clickButton.setOnClickListener( new View.OnClickListener()
         {
             @Override
@@ -129,7 +132,7 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
     //Méthode utilisée pour ouvrir la porchaine page avec les résultats de la recherche
     public void open_activity_showResults()
     {
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this,Liste_plante_firebase.class);
         startActivity(intent);
     }
 
@@ -137,6 +140,7 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap)
     {
         mMap = googleMap;
+
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener()
         {
@@ -155,4 +159,97 @@ public class Search_Location extends FragmentActivity implements OnMapReadyCallb
             }
         });
     }
+    private void listview_DB()
+    {
+
+/*
+        int numberRow = database_res.CountPlantes();
+        String[] nomTab = new String[numberRow];
+        String[] idTab = new String[numberRow];
+        String[] libelleTab = new String[numberRow];
+        String[] statutTab = new String[numberRow];
+        String[] latTab = new String[numberRow];
+        String[] lngTab = new String[numberRow];
+
+        Cursor id = database_res.id();
+        Cursor nom = database_res.noms();
+        Cursor libelle = database_res.libelles();
+        Cursor statut = database_res.status();
+        Cursor lat = database_res.lats();
+        Cursor lng = database_res.lngs();
+
+        int i = 0;
+        while (nom.moveToNext())
+        {
+            if (nom.getString(0) == "")
+            {
+                break;
+            }
+            nomTab[i] = nom.getString(0);
+            i++;
+        }
+
+        int u = 0;
+        while (id.moveToNext())
+        {
+            if (id.getString(0) == "")
+            {
+                break;
+            }
+            idTab[u] = id.getString(0);
+            u++;
+        }
+
+        int j = 0;
+        while (libelle.moveToNext())
+        {
+            if (libelle.getString(0) == "")
+            {
+                break;
+            }
+            libelleTab[j] = libelle.getString(0);
+            j++;
+        }
+
+
+        int z = 0;
+        while (statut.moveToNext())
+        {
+            if (statut.getString(0) == "")
+            {
+                break;
+            }
+            statutTab[z] = statut.getString(0);
+            z++;
+
+        }
+
+        z = 0;
+        while (lat.moveToNext())
+        {
+            if (lat.getString(0) == "")
+            {
+                break;
+            }
+            latTab[z] = lat.getString(0);
+            z++;
+
+        }
+
+        z = 0;
+        while (lng.moveToNext())
+        {
+            if (lng.getString(0) == "")
+            {
+                break;
+            }
+            lngTab[z] = lng.getString(0);
+            z++;
+
+        }
+
+        Adapter adapter = new Adapter(this, idTab, nomTab,libelleTab, statutTab,latTab,lngTab);
+*/
+    }
+
 }

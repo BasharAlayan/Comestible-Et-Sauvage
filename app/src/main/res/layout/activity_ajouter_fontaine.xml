@@ -111,9 +111,21 @@
         android:layout_alignStart="@+id/textView3"
         android:layout_marginTop="25dp" />
 
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="130dp"
+        android:id="@+id/photoFontaine"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/StatutFontaine"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4"
+        />
+
     <Button
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:id="@+id/image_Fontaine"
         android:background="@mipmap/photo"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"

@@ -25,8 +25,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".Liste_plante_firebase" />
+        <activity android:name=".ResultFontaineSearch"></activity>
+        <activity android:name=".ChooseFontaine" />
+        <activity android:name=".ResultPlanteSearch" />
+        <activity android:name=".choosePlante" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,6 +41,21 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".Search_LocationFon"
+            android:label="@string/title_activity_search__location_fon" />
+        <activity
+            android:name=".MapsActivityFon"
+            android:label="@string/title_activity_maps_fon" />
+        <activity android:name=".Activity_rechercher_Fontaine" />
+        <activity android:name=".RechercherType" />
+        <activity android:name=".list_fontaine_firebase" />
+        <activity
+            android:name=".Ajouter_Fontaine_Pos"
+            android:label="@string/title_activity_ajouter__fontaine__pos" />
+        <activity android:name=".AdapteFontaine" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Liste_plante_firebase" />
         <activity
             android:name=".Ajouter_Plante_Pos"
             android:label="@string/title_activity_ajouter__plante__pos" />

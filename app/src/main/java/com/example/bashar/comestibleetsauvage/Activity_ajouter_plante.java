@@ -22,7 +22,7 @@ import android.widget.Toast;
 public class Activity_ajouter_plante extends AppCompatActivity {
 
     //Variables globales du controlleur
-    private static final int CAM_REQUEST=1313;
+    private static final int CAM_REQUEST = 1313;
 
     private String nomP;
     private String libelleP;
@@ -37,62 +37,56 @@ public class Activity_ajouter_plante extends AppCompatActivity {
     private Button btnimage;
     private ActionBar actionBar;
 
-    DataBase_Local dataBase;
+    private DataBase_Local dataBase;
 
     //Lors de la création de la page
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajouter_plante);
-        actionBar=getSupportActionBar();
+        actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AAAFF")));
         actionBar.setTitle("Ajouter une Plante");
 
         //get nom plante
-        NomP_TF= findViewById(R.id.Nom_Plante);
+        NomP_TF = findViewById(R.id.Nom_Plante);
 
         //get libelle
-        libelleP_TF= findViewById(R.id.Libelle_Plante);
+        libelleP_TF = findViewById(R.id.Libelle_Plante);
 
         //get statut
-        statutP_TF= findViewById(R.id.Statut_Plante);
+        statutP_TF = findViewById(R.id.Statut_Plante);
 
         //photo
-        btnimage= findViewById(R.id.image_plante);
-        imageView= findViewById(R.id.photo);
+        btnimage = findViewById(R.id.image_plante);
+        imageView = findViewById(R.id.photo);
 
         //Bouton servant à prendre une photo
         btnimage.setOnClickListener(new btnTakePhotoClicker());
 
-        dataBase=new DataBase_Local(this);
+        dataBase = new DataBase_Local(this);
 
         Button button = findViewById(R.id.button_Aj_P);
-        button.setOnClickListener(new View.OnClickListener()
-        {
+        button.setOnClickListener(new View.OnClickListener() {
             //lors d'un click sur la page
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
 
-                nomP= NomP_TF.getText().toString();
-                libelleP= libelleP_TF.getText().toString();
-                statutP= statutP_TF.getText().toString();
+                nomP = NomP_TF.getText().toString();
+                libelleP = libelleP_TF.getText().toString();
+                statutP = statutP_TF.getText().toString();
 
                 //Si les champs sont remplis, on peut envoyer la nouvelle à la BDD locale
-                if(nomP.equals("") || libelleP.equals("") || statutP.equals(""))
-                {
-                    Toast.makeText(Activity_ajouter_plante.this, "veuillez remplir tous les champs",Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    dataBase.addNewPlante(new Plante(nomP,libelleP,statutP,null,null,null));
+                if (nomP.equals("") || libelleP.equals("") || statutP.equals("")) {
+                    Toast.makeText(Activity_ajouter_plante.this, "veuillez remplir tous les champs", Toast.LENGTH_LONG).show();
+                } else {
+                    dataBase.addNewPlante(new Plante(nomP, libelleP, statutP, null, null, null));
 
                     NomP_TF.setText("");
                     libelleP_TF.setText("");
                     statutP_TF.setText("");
-                    Toast.makeText(Activity_ajouter_plante.this,"veuillez choisir le lieu" ,Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(Activity_ajouter_plante.this,Ajouter_Plante_Pos.class);
+                    Toast.makeText(Activity_ajouter_plante.this, "veuillez choisir le lieu", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Activity_ajouter_plante.this, Ajouter_Plante_Pos.class);
                     Activity_ajouter_plante.this.startActivity(intent);
                 }
             }
@@ -101,26 +95,22 @@ public class Activity_ajouter_plante extends AppCompatActivity {
 
     //Pour ouvrir l'Appareil Photo
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == CAM_REQUEST)
-        {
-            Bitmap bitmap=(Bitmap) data.getExtras().get("data");
+        if (requestCode == CAM_REQUEST) {
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(bitmap);
         }
     }
 
     //Bouton pour prendre une photo
-    class btnTakePhotoClicker implements Button.OnClickListener
-    {
+    class btnTakePhotoClicker implements Button.OnClickListener {
 
         @Override
-        public void onClick(View v)
-        {
-            Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent,CAM_REQUEST);
+        public void onClick(View v) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, CAM_REQUEST);
         }
     }
 

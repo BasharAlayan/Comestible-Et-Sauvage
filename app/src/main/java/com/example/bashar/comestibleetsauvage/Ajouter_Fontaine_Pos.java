@@ -25,34 +25,32 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-/**
- * Controlleur servant à choisir une position sur une map GoogleMap, position qui pourra ensuite être utilisée
- */
-public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCallback {
+public class Ajouter_Fontaine_Pos extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     private static final int REQUEST_LOCATION = 1;
     private LocationManager locationManager;
+
     //Les variables globales du controlleur, lat et lng étant envoyés à la page suivante via Intent
     private final Marker[] marker = new Marker[1];
     private Double lat;
     private Double lng;
     private ActionBar actionBar;
 
-    private DataBase_Local dataBase_local;
+    DataBase_Local_Fontaine dataBase_local;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajouter__plante__pos);
+        setContentView(R.layout.activity_ajouter__fontaine__pos);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         //On défini ce qui va se passe lors de la validation avec le bouton valider
-        Button clickButton = findViewById(R.id.ValiderPos);
-        dataBase_local = new DataBase_Local(this);
+        Button clickButton = findViewById(R.id.ValiderPosFontaine);
+        dataBase_local = new DataBase_Local_Fontaine(this);
         clickButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -67,12 +65,6 @@ public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCa
 
                     String lastId = dataBase_local.getLastId();
 
-                    //update the table Plante en ajoutant two column Lat and lon
-                    if (dataBase_local.getLastId() == "" + 1) {
-                        dataBase_local.updateTableLON();
-                        dataBase_local.updateTableLAT();
-                    }
-
                     //Ensuite, nous ouvrons cette autre activité
                     dataBase_local.addLat(lastId, "" + lat);
                     dataBase_local.addLng(lastId, "" + lng);
@@ -81,7 +73,7 @@ public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCa
                 }
             }
         });
-        Button ma_pos = (Button) findViewById(R.id.Ma_Position_Aj_Plante);
+        Button ma_pos = (Button) findViewById(R.id.Ma_Position_Aj_Fontaine);
         ma_pos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +92,7 @@ public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCa
     public void open_activity_showResults() {
         //TODO
         //THE REFERENCED ACTIVITY IS TO BE CHANGED BY A MAP WITH THE RESULTS
-        Toast.makeText(Ajouter_Plante_Pos.this, "Vous avez ajouté une plante", Toast.LENGTH_LONG).show();
+        Toast.makeText(Ajouter_Fontaine_Pos.this, "Vous avez ajouté une fontaine", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
@@ -133,11 +125,11 @@ public class Ajouter_Plante_Pos extends FragmentActivity implements OnMapReadyCa
     }
 
     private void getLocation() {
-        if (ActivityCompat.checkSelfPermission(Ajouter_Plante_Pos.this, Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(Ajouter_Fontaine_Pos.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
-                (Ajouter_Plante_Pos.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                (Ajouter_Fontaine_Pos.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(Ajouter_Plante_Pos.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+            ActivityCompat.requestPermissions(Ajouter_Fontaine_Pos.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
 
         } else {
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);

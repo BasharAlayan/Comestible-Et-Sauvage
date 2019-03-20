@@ -9,16 +9,16 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class PlantesList_Firebase extends ArrayAdapter<Plante> {
+public class FontainesList_Firebase extends ArrayAdapter<Fontaine> {
 
     private Activity context;
-    private List<Plante> planteList;
+    private List<Fontaine> fontaineList;
 
 
-    public PlantesList_Firebase(Activity context, List<Plante> planteList) {
-        super(context, R.layout.model_firebase_plante, planteList);
+    public FontainesList_Firebase(Activity context, List<Fontaine> fontaineList) {
+        super(context, R.layout.model_firebase_fontaine, fontaineList);
         this.context = context;
-        this.planteList = planteList;
+        this.fontaineList = fontaineList;
     }
 
     @Override
@@ -33,17 +33,15 @@ public class PlantesList_Firebase extends ArrayAdapter<Plante> {
         TextView lat = (TextView) listViewitem.findViewById(R.id.LatPlanteFirebase);
         TextView lng = (TextView) listViewitem.findViewById(R.id.LngPlanteFirebase);
 
+        Fontaine fontaine = fontaineList.get(position);
 
-        Plante plante = planteList.get(position);
 
-
-        nom.setText(plante.getNom());
-        libelle.setText(plante.getLibelle());
-        statut.setText(plante.getStatut());
-        id.setText(plante.getId());
-        lat.setText(plante.getLat());
-        lng.setText(plante.getLon());
-
+        nom.setText(fontaine.getNom());
+        libelle.setText(fontaine.getLibelle());
+        statut.setText(fontaine.getStatut());
+        id.setText(fontaine.getId());
+        lat.setText(fontaine.getLat());
+        lng.setText(fontaine.getLon());
 
         return listViewitem;
     }

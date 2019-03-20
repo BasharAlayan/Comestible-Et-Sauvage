@@ -6,9 +6,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choisissez une plante"
+        android:textAlignment="center"
+        android:textColor="@color/blueFonce"
+        android:textStyle="bold"
+        android:id="@+id/Titre"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/background"
+        />
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
+
 
 
         <EditText
@@ -33,7 +50,7 @@
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="fill_parent"
-        android:layout_height="573dp"
+        android:layout_height="520dp"
         tools:context=".Search_Location" />
 
     <Button

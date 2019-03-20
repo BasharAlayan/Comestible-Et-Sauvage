@@ -6,13 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class Database_Res extends SQLiteOpenHelper {
+public class Database_Res_Fon extends SQLiteOpenHelper {
 
     private static final String TAG = "DataBase_Global";
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "DataBase_Local";
 
-    private static final String TABLE_NAME = "Plante_Table_Res";
+    private static final String TABLE_NAME = "Fontaine_Table_Res";
 
     private static final String COL1 = "id";
     private static final String COL2 = "nom";
@@ -24,7 +24,7 @@ public class Database_Res extends SQLiteOpenHelper {
 
     private String LastId = "";
 
-    public Database_Res(Context context) {
+    public Database_Res_Fon(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -32,7 +32,7 @@ public class Database_Res extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( "
-                + COL1 + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + COL1 + " INTEGER PRIMARY KEY ,"
                 + COL2 + " VARCHAR(100) ,"
                 + COL3 + " VARCHAR(100) ,"
                 + COL4 + " VARCHAR(100) ,"
@@ -126,7 +126,7 @@ public class Database_Res extends SQLiteOpenHelper {
         return data;
     }
 
-    public int CountPlantes() {
+    public int CountFontaines() {
         int planteCount = 0;
         String query = "SELECT COUNT(*) FROM " + TABLE_NAME;
         Cursor cursor = getReadableDatabase().rawQuery(query, null);
@@ -161,5 +161,4 @@ public class Database_Res extends SQLiteOpenHelper {
     }
 
 }
-
 

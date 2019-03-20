@@ -6,9 +6,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.FirebaseApp;
@@ -16,19 +13,17 @@ import com.google.firebase.FirebaseApp;
 /**
  * Classe servant à synchroniser une plante entre 2 BDD
  */
-public class Synch_plante extends AppCompatActivity
-{
-    DataBase_Local dataBase_global;
+public class Synch_plante extends AppCompatActivity {
+    private DataBase_Local dataBase_global;
     private ListView mlistView;
     private ActionBar actionBar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_synch_plante);
-        actionBar=getSupportActionBar();
+        actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AAAFF")));
         actionBar.setTitle("Synchronisation une Plante");
         mlistView = findViewById(R.id.listview);
@@ -36,33 +31,7 @@ public class Synch_plante extends AppCompatActivity
         listview_DB();
     }
 
-    //Classe inutilisée mais présente car peut être utile dans le futur
-    class CustomAdapter extends BaseAdapter
-    {
-        @Override
-        public int getCount() {
-            return 0;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent)
-        {
-            return null;
-        }
-    }
-
-    private void listview_DB()
-    {
+    private void listview_DB() {
 
         int numberRow = dataBase_global.CountPlantes();
 
@@ -81,10 +50,8 @@ public class Synch_plante extends AppCompatActivity
         Cursor lng = dataBase_global.lngs();
 
         int i = 0;
-        while (nom.moveToNext())
-        {
-            if (nom.getString(0) == "")
-            {
+        while (nom.moveToNext()) {
+            if (nom.getString(0) == "") {
                 break;
             }
             nomTab[i] = nom.getString(0);
@@ -92,10 +59,8 @@ public class Synch_plante extends AppCompatActivity
         }
 
         int u = 0;
-        while (id.moveToNext())
-        {
-            if (id.getString(0) == "")
-            {
+        while (id.moveToNext()) {
+            if (id.getString(0) == "") {
                 break;
             }
             idTab[u] = id.getString(0);
@@ -103,10 +68,8 @@ public class Synch_plante extends AppCompatActivity
         }
 
         int j = 0;
-        while (libelle.moveToNext())
-        {
-            if (libelle.getString(0) == "")
-            {
+        while (libelle.moveToNext()) {
+            if (libelle.getString(0) == "") {
                 break;
             }
             libelleTab[j] = libelle.getString(0);
@@ -115,10 +78,8 @@ public class Synch_plante extends AppCompatActivity
 
 
         int z = 0;
-        while (statut.moveToNext())
-        {
-            if (statut.getString(0) == "")
-            {
+        while (statut.moveToNext()) {
+            if (statut.getString(0) == "") {
                 break;
             }
             statutTab[z] = statut.getString(0);
@@ -127,10 +88,8 @@ public class Synch_plante extends AppCompatActivity
         }
 
         z = 0;
-        while (lat.moveToNext())
-        {
-            if (lat.getString(0) == "")
-            {
+        while (lat.moveToNext()) {
+            if (lat.getString(0) == "") {
                 break;
             }
             latTab[z] = lat.getString(0);
@@ -139,17 +98,15 @@ public class Synch_plante extends AppCompatActivity
         }
 
         z = 0;
-        while (lng.moveToNext())
-        {
-            if (lng.getString(0) == "")
-            {
+        while (lng.moveToNext()) {
+            if (lng.getString(0) == "") {
                 break;
             }
             lngTab[z] = lng.getString(0);
             z++;
 
         }
-        Adapter adapter = new Adapter(this, idTab, nomTab,libelleTab, statutTab,latTab,lngTab);
+        Adapter adapter = new Adapter(this, idTab, nomTab, libelleTab, statutTab, latTab, lngTab);
         mlistView.setAdapter(adapter);
 
     }

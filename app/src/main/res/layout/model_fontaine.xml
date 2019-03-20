@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/model_nom_Fontaine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:textAlignment="center"
+        android:text="Nom"
+        android:textColor="@color/blueClaire"
+        android:textSize="11pt"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/model_libelle_Fontaine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:text="Libelle"
+        android:textColor="@color/blueClaire"
+        android:textSize="8pt"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/model_statut_Fontaine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:layout_marginBottom="4dp"
+        android:text="Statut"
+        android:textColor="@color/blueClaire"
+        android:textSize="8pt"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/publier_Fontaine"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/blueClaire"
+        android:drawableLeft="@drawable/ic_action_name2"
+        android:text="Transmettre" />
+
+    <Button
+        android:id="@+id/supprimer_Fontaine"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_toRightOf="@id/publier"
+        android:background="@color/blueClaire"
+        android:layout_marginBottom="5dp"
+        android:drawableLeft="@drawable/deleteicon"
+        android:text="Supprimer" />
+
+</LinearLayout>

@@ -9,10 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-/**
- * Controlleur de activity_synchronisation, sert à choisir entre plante et fontaine pour a synchronisation
- */
-public class Synchronisation extends AppCompatActivity {
+public class RechercherType extends AppCompatActivity {
 
     private Button Plante;
     private Button Fonatine;
@@ -20,17 +17,16 @@ public class Synchronisation extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_synchronisation);
+        setContentView(R.layout.activity_rechercher_type);
         Plante = findViewById(R.id.Syn_Plante);
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AAAFF")));
-        actionBar.setTitle("Transmettre une Fontaine OU une Plante");
+        actionBar.setTitle("Rechercher une Fontaine OU une Plante");
         Plante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                open_activity_Syn_P();
+                open_activity_RchercherP();
             }
         });
 
@@ -38,19 +34,19 @@ public class Synchronisation extends AppCompatActivity {
         Fonatine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                open_activity_Syn_F();
+                open_activity_RechercherF();
             }
         });
     }
 
     //Méthode utilisées pour les boutons
-    public void open_activity_Syn_P() {
-        Intent intent = new Intent(this, Synch_plante.class);
+    public void open_activity_RchercherP() {
+        Intent intent = new Intent(this, Liste_plante_firebase.class);
         startActivity(intent);
     }
 
-    public void open_activity_Syn_F() {
-        Intent intent = new Intent(this, Synch_fontaine.class);
+    public void open_activity_RechercherF() {
+        Intent intent = new Intent(this, list_fontaine_firebase.class);
         startActivity(intent);
     }
 }

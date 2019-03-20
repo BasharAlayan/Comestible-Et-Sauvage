@@ -22,21 +22,21 @@ public class Adapter extends ArrayAdapter<String>
 {
 
     //Les variables
-    String[] id = {};
-    String[] noms = {};
-    String[] libelles = {};
-    String[] statut = {};
-    String[] lat = {};
-    String[] lng = {};
-    TextView test;
-    Context c;
-    Adapter adapter;
+    private String[] id = {};
+    private String[] noms = {};
+    private String[] libelles = {};
+    private String[] statut = {};
+    private String[] lat = {};
+    private String[] lng = {};
+    private TextView test;
+    private Context c;
+    private Adapter adapter;
 
-    LayoutInflater inflater;
-    Button supprimer;
-    Button transmettre;
+    private LayoutInflater inflater;
+    private Button supprimer;
+    private Button transmettre;
     private int positionID;
-    DataBase_Local db;
+    private DataBase_Local db;
 
     //Firebase
     DatabaseReference databaseReference;
@@ -72,26 +72,14 @@ public class Adapter extends ArrayAdapter<String>
         TextView libelleV;
         TextView statutV;
 
-        TextView latV;
-        TextView lngV;
-
-
-        //Initializer les View
-        // idV = convertView.findViewById(R.id.id);
-        //latV = convertView.findViewById(R.id.lat);
-        //lngV = convertView.findViewById(R.id.lng);
         nomV = convertView.findViewById(R.id.model_nom);
         libelleV = convertView.findViewById(R.id.model_libelle);
         statutV = convertView.findViewById(R.id.model_statut);
 
-
         //ASSIGN DATA
-        //idV.setText(id[position]);
         nomV.setText(noms[position]);
         libelleV.setText("La Libellé : "+libelles[position]);
         statutV.setText("Le Statut : "+statut[position]);
-        //latV.setText(lat[position]);
-        //lngV.setText(lng[position]);
 
         final int positionID = position;
         supprimer = convertView.findViewById(R.id.supprimer);
@@ -118,20 +106,11 @@ public class Adapter extends ArrayAdapter<String>
                 //creation du child dans l'objet root
                 databaseReference=FirebaseDatabase.getInstance().getReference("Plantes");
 
-                //assignation des valeurs Dans l'objet child
-                /*
-                databaseReference.child("idPlante").setValue(id[positionID]);
-                databaseReference.child("nomsPlante").setValue(noms[positionID]);
-                databaseReference.child("libellePlante").setValue(libelles[positionID]);
-                databaseReference.child("statutPlante").setValue(statut[positionID]);
-                databaseReference.child("imagePlante").setValue(null);
-                databaseReference.child("latPlante").setValue(lat[positionID]);
-                databaseReference.child("lngPlante").setValue(lng[positionID]);
-*/
                 Plante plante =new Plante(id[positionID],noms[positionID],libelles[positionID],statut[positionID],null,lat[positionID],lng[positionID]);
                 databaseReference.push().setValue(plante);
 
                 db = new DataBase_Local(c);
+
                 db.DeleteRow(id[positionID]);
 
                 Toast.makeText(c, "Vous avez transmis la plante "+noms[positionID] ,Toast.LENGTH_LONG).show();

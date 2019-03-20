@@ -110,7 +110,6 @@
         android:layout_marginRight="20dp"
         android:layout_toRightOf="@+id/textView4"
         android:layout_toEndOf="@+id/textView4"
-
         />
 
     <TextView

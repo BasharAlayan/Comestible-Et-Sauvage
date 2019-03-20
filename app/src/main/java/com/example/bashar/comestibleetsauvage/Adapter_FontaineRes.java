@@ -15,7 +15,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Adapter_PlanteRes extends ArrayAdapter<String> {
+public class Adapter_FontaineRes extends ArrayAdapter<String> {
 
     //Les variables
     private String[] id = {};
@@ -30,7 +30,7 @@ public class Adapter_PlanteRes extends ArrayAdapter<String> {
     private Button supprimer;
 
     //Méthode Adapter, servant faire le lien entre les attributs des 2 tables
-    public Adapter_PlanteRes(Context context, String[] id, String[] noms, String[] libelles, String[] statut, String[] lat, String[] lng) {
+    public Adapter_FontaineRes(Context context, String[] id, String[] noms, String[] libelles, String[] statut, String[] lat, String[] lng) {
         super(context, R.layout.resultplante, noms);
 
         this.c = context;

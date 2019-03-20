@@ -19,27 +19,24 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Classe servant à récupérer des plantes depuis la BDD distante
- */
-public class Liste_plante_firebase extends AppCompatActivity {
+public class list_fontaine_firebase extends AppCompatActivity {
 
     private ListView listView;
-    private List<Plante> planteList;
+    private List<Fontaine> fontaineList;
     private DatabaseReference databaseReference;
     private ActionBar actionBar;
     private Button ma_position;
     private Button recherche_position;
-    private Database_Res database_res;
+    private Database_Res_Fon database_res_fon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_liste_plante_firebase);
+        setContentView(R.layout.activity_list_fontaine_firebase);
         listView = findViewById(R.id.listviewFirebase);
-        planteList = new ArrayList<>();
-        database_res = new Database_Res(Liste_plante_firebase.this);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Plantes");
+        fontaineList = new ArrayList<>();
+        database_res_fon = new Database_Res_Fon(list_fontaine_firebase.this);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Fontaine");
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AAAFF")));
         actionBar.setTitle("Rechercher");
@@ -65,12 +62,12 @@ public class Liste_plante_firebase extends AppCompatActivity {
 
     //Fonctions servant à rediriger vers la bonne activité selon le choix de l'utilisateur
     public void open_activity_Maps() {
-        Intent intent = new Intent(this, MapsActivity.class);
+        Intent intent = new Intent(this, MapsActivityFon.class);
         startActivity(intent);
     }
 
     public void open_activity_Maps2() {
-        Intent intent = new Intent(this, Search_Location.class);
+        Intent intent = new Intent(this, Search_LocationFon.class);
         startActivity(intent);
     }
 
@@ -83,21 +80,18 @@ public class Liste_plante_firebase extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                planteList.clear();
-                database_res.deleteData();
-                for (DataSnapshot planteSanpshot : dataSnapshot.getChildren()) {
-                    Plante plante = planteSanpshot.getValue(Plante.class);
-                    database_res = new Database_Res(Liste_plante_firebase.this);
-                    database_res.createTable();
-                    database_res.InsertData(plante.getId(), plante.getNom(), plante.getLibelle(), plante.getStatut(), null, plante.getLat(), plante.getLon());
-                    planteList.add(plante);
+                fontaineList.clear();
+                database_res_fon.deleteData();
+                for (DataSnapshot FontaineSanpshot : dataSnapshot.getChildren()) {
+                    Fontaine fontaine = FontaineSanpshot.getValue(Fontaine.class);
+                    database_res_fon = new Database_Res_Fon(list_fontaine_firebase.this);
+                    database_res_fon.createTable();
+                    database_res_fon.InsertData(fontaine.getId(), fontaine.getNom(), fontaine.getLibelle(), fontaine.getStatut(), null, fontaine.getLat(), fontaine.getLon());
+                    fontaineList.add(fontaine);
 
                 }
-
-                PlantesList_Firebase adapter = new PlantesList_Firebase(Liste_plante_firebase.this, planteList);
+                FontainesList_Firebase adapter = new FontainesList_Firebase(list_fontaine_firebase.this, fontaineList);
                 //listView.setAdapter(adapter);
-
-
             }
 
             @Override
@@ -107,3 +101,4 @@ public class Liste_plante_firebase extends AppCompatActivity {
         });
     }
 }
+

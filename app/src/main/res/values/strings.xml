@@ -4,4 +4,7 @@
     <string name="title_activity_search__location">Map</string>
     <string name="title_activity_ajouter__plante__pos">Map</string>
     <string name="title_activity_xxx">Map</string>
+    <string name="title_activity_ajouter__fontaine__pos">Map</string>
+    <string name="title_activity_maps_fon">Map</string>
+    <string name="title_activity_search__location_fon">Map</string>
 </resources>

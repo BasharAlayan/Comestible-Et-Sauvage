@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".Activity_rechercher">
+    tools:context=".RechercherType">
+
 
 
     <Button
-        android:id="@+id/Aj_Plante"
+        android:id="@+id/Syn_Plante"
         android:layout_width="fill_parent"
         android:layout_height="88dp"
         android:textSize="20sp"
@@ -24,7 +25,7 @@
         android:layout_marginTop="45dp" />
 
     <Button
-        android:id="@+id/Aj_Fontaine"
+        android:id="@+id/Syn_Fontaine"
         android:layout_width="fill_parent"
         android:layout_height="88dp"
         android:textSize="20sp"
@@ -33,11 +34,12 @@
         android:textStyle="bold|italic"
         android:drawableLeft="@mipmap/fountain"
         android:background="#D8F1FF"
-        android:layout_below="@+id/Aj_Plante"
+        android:layout_below="@+id/Syn_Plante"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>

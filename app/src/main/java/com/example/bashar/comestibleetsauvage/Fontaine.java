@@ -1,9 +1,10 @@
 package com.example.bashar.comestibleetsauvage;
 
 /**
- * Classe java classique représentant une plante
+ * Classe java classique représentant une fontaine
  */
-public class Plante {
+public class Fontaine {
+
     private String id;
     private String Nom;
     private String Libelle;
@@ -15,12 +16,12 @@ public class Plante {
 
 
     //Constructeur vide inutilisé
-    public Plante() {
+    public Fontaine() {
 
     }
 
     //Constructeurs
-    public Plante(String id, String Nom, String Libelle, String Statut, byte[] Image) {
+    public Fontaine(String id, String Nom, String Libelle, String Statut, byte[] Image) {
 
         this.id = id;
         this.Nom = Nom;
@@ -29,7 +30,7 @@ public class Plante {
         this.Image = Image;
     }
 
-    public Plante(String Nom, String Libelle, String Statut, byte[] Image, String lat, String lon) {
+    public Fontaine(String Nom, String Libelle, String Statut, byte[] Image, String lat, String lon) {
 
         this.Nom = Nom;
         this.Libelle = Libelle;
@@ -39,7 +40,7 @@ public class Plante {
         this.lon = lon;
     }
 
-    public Plante(String id, String Nom, String Libelle, String Statut, byte[] Image, String lat, String lon) {
+    public Fontaine(String id, String Nom, String Libelle, String Statut, byte[] Image, String lat, String lon) {
 
         this.id = id;
         this.Nom = Nom;
@@ -50,7 +51,7 @@ public class Plante {
         this.lon = lon;
     }
 
-    public Plante(String Nom, String Libelle, String Statut, byte[] Image) {
+    public Fontaine(String Nom, String Libelle, String Statut, byte[] Image) {
 
         this.Nom = Nom;
         this.Libelle = Libelle;
@@ -115,3 +116,5 @@ public class Plante {
         this.lon = lon;
     }
 }
+
+

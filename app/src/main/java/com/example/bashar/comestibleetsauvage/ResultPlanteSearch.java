@@ -8,30 +8,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
-/**
- * Classe de synchronisation des fontaines entre les 2 BDD
- */
-public class Synch_fontaine extends AppCompatActivity {
-
-    private DataBase_Local_Fontaine db;
+public class ResultPlanteSearch extends AppCompatActivity {
+    private Database_Res dataBase;
     private ListView mlistView;
     private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_synch_fontaine);
+        setContentView(R.layout.activity_result_plante_search);
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AAAFF")));
-        actionBar.setTitle("Synchronisation une Fontaine");
-        mlistView = findViewById(R.id.listviewFontaine);
-        db = new DataBase_Local_Fontaine(this);
+        actionBar.setTitle("Detail des Plantes");
+        mlistView = findViewById(R.id.listviewResultSearch);
+        dataBase = new Database_Res(this);
         listview_DB();
     }
 
     private void listview_DB() {
-
-        int numberRow = db.CountFontaine();
+        int numberRow = dataBase.CountPlantes();
 
         String[] nomTab = new String[numberRow];
         String[] idTab = new String[numberRow];
@@ -40,12 +35,12 @@ public class Synch_fontaine extends AppCompatActivity {
         String[] latTab = new String[numberRow];
         String[] lngTab = new String[numberRow];
 
-        Cursor id = db.id();
-        Cursor nom = db.noms();
-        Cursor libelle = db.libelles();
-        Cursor statut = db.status();
-        Cursor lat = db.lats();
-        Cursor lng = db.lngs();
+        Cursor id = dataBase.id();
+        Cursor nom = dataBase.noms();
+        Cursor libelle = dataBase.libelles();
+        Cursor statut = dataBase.status();
+        Cursor lat = dataBase.lats();
+        Cursor lng = dataBase.lngs();
 
         int i = 0;
         while (nom.moveToNext()) {
@@ -102,8 +97,11 @@ public class Synch_fontaine extends AppCompatActivity {
             }
             lngTab[z] = lng.getString(0);
             z++;
+
         }
-        AdapteFontaine adapter = new AdapteFontaine(this, idTab, nomTab, libelleTab, statutTab, latTab, lngTab);
+        Adapter_PlanteRes adapter = new Adapter_PlanteRes(this, idTab, nomTab, libelleTab, statutTab, latTab, lngTab);
         mlistView.setAdapter(adapter);
+
     }
+
 }

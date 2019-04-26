@@ -45,6 +45,19 @@ public class DataBase_Local extends SQLiteOpenHelper {
 
         db.execSQL(createTable);
     }
+    public void createTable(){
+        SQLiteDatabase database = this.getWritableDatabase();
+        String createTable = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( "
+                + COL1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COL2 + " VARCHAR(100) ,"
+                + COL3 + " VARCHAR(100) ,"
+                + COL4 + " VARCHAR(100) ,"
+                + COL5 + " BLOB ,"
+                + COL6 + " VARCHAR(100) ,"
+                + COL7 + " VARCHAR(100) )";
+
+        database.execSQL(createTable);
+    }
 
 
     //Méthodes d'ajout,de modification et de supression dans la BDD locale

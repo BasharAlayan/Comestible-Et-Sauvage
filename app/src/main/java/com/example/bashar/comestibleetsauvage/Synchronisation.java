@@ -17,6 +17,7 @@ public class Synchronisation extends AppCompatActivity {
     private Button Plante;
     private Button Fonatine;
     private ActionBar actionBar;
+    DataBase_Local dataBase_local;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class Synchronisation extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AAAFF")));
         actionBar.setTitle("Transmettre une Fontaine OU une Plante");
+        dataBase_local=new DataBase_Local(this);
+        dataBase_local.createTable();
         Plante.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

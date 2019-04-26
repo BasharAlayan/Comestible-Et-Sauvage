@@ -20,6 +20,7 @@ public class Activity_Ajouter extends AppCompatActivity {
     private Button ajouter_Fonatine;
     private ActionBar actionBar;
 
+    DataBase_Local dataBase_local;
     //Lors de la création de la page
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class Activity_Ajouter extends AppCompatActivity {
         actionBar.setTitle("Ajouter une Fontaine ou une Plante");
         ajouter_Plante = findViewById(R.id.Aj_Plante);
 
+        dataBase_local=new DataBase_Local(this);
+        dataBase_local.createTable();
         //Sert à ouvrir une nouvelle vue
         ajouter_Plante.setOnClickListener(new View.OnClickListener() {
             @Override

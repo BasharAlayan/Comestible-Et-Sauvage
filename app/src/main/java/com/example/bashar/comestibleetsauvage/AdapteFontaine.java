@@ -89,7 +89,7 @@ public class AdapteFontaine extends ArrayAdapter<String> {
             public void onClick(View v) {
                 db = new DataBase_Local_Fontaine(c);
                 db.DeleteRow(id[positionID]);
-                Toast.makeText(c, "Vous avez supprimé la plante " + noms[positionID], Toast.LENGTH_LONG).show();
+                Toast.makeText(c, "Vous avez supprimé la fontaine " + noms[positionID], Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(c, MainActivity.class);
                 c.startActivity(intent);
             }
@@ -109,7 +109,7 @@ public class AdapteFontaine extends ArrayAdapter<String> {
                 db = new DataBase_Local_Fontaine(c);
                 db.DeleteRow(id[positionID]);
 
-                Toast.makeText(c, "Vous avez transmis la plante " + noms[positionID], Toast.LENGTH_LONG).show();
+                Toast.makeText(c, "Vous avez transmis la Fontaine " + noms[positionID], Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(c, MainActivity.class);
                 c.startActivity(intent);
             }
